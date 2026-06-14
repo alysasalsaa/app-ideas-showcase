@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>calc — Calculator CLI</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0d;
+      --terminal:  #111111;
+      --border:    rgba(255,255,255,0.08);
+      --green:     #4ade80;
+      --cyan:      #22d3ee;
+      --yellow:    #fbbf24;
+      --red:       #f87171;
+      --muted:     #6b7280;
+      --white:     #f0f0f0;
+      --violet:    #a78bfa;
+      --prompt:    #22d3ee;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .header-left h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+
+    .header-left p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 3px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(167,139,250,0.1);
+      color: var(--violet);
+      border: 1px solid rgba(167,139,250,0.25);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Terminal window */
+    .window {
+      width: 100%;
+      max-width: 760px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    /* Title bar */
+    .titlebar {
+      background: #1c1c1c;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dots { display: flex; gap: 6px; }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .titlebar-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      flex: 1;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* Output area */
+    .output {
+      background: var(--terminal);
+      padding: 20px 20px 8px;
+      min-height: 320px;
+      max-height: 420px;
+      overflow-y: auto;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    .output::-webkit-scrollbar { width: 4px; }
+    .output::-webkit-scrollbar-track { background: transparent; }
+    .output::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+    .line { display: flex; flex-wrap: wrap; gap: 4px; white-space: pre-wrap; word-break: break-all; }
+    .line + .line { margin-top: 2px; }
+
+    .c-prompt  { color: var(--prompt); }
+    .c-cmd     { color: var(--white); }
+    .c-green   { color: var(--green); }
+    .c-cyan    { color: var(--cyan); }
+    .c-yellow  { color: var(--yellow); }
+    .c-red     { color: var(--red); }
+    .c-muted   { color: var(--muted); }
+    .c-violet  { color: var(--violet); }
+
+    /* Input row */
+    .input-row {
+      background: var(--terminal);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 20px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-prompt { color: var(--prompt); font-size: 0.82rem; white-space: nowrap; }
+
+    #cmdInput {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      caret-color: var(--cyan);
+    }
+
+    /* Help cards */
+    .help-grid {
+      width: 100%;
+      max-width: 760px;
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+
+    .cmd-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .cmd-card:hover {
+      background: rgba(34,211,238,0.06);
+      border-color: rgba(34,211,238,0.25);
+    }
+
+    .cmd-card .cmd-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .cmd-card .cmd-example {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Calculator CLI</h1>
+      <p>Interactive terminal — try it in your browser</p>
+    </div>
+    <span class="badge">Intermediate</span>
+  </div>
+
+  <div class="window">
+    <div class="titlebar">
+      <div class="dots">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <span class="titlebar-label">calc — Calculator CLI v1.0.0</span>
+      <div style="width:42px"></div>
+    </div>
+
+    <div class="output" id="output"></div>
+
+    <div class="input-row">
+      <span class="input-prompt">$ calc</span>
+      <input id="cmdInput" type="text" placeholder="type a command… (help for list)" autocomplete="off" spellcheck="false" autofocus />
+    </div>
+  </div>
+
+  <!-- Quick-click command cards -->
+  <div class="help-grid">
+    <div class="cmd-card" onclick="runExample('add 5 10 3')">
+      <div class="cmd-name">add</div>
+      <div class="cmd-example">add 5 10 3</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('add even 2 4 7 9 6')">
+      <div class="cmd-name">add even</div>
+      <div class="cmd-example">add even 2 4 7 9 6</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('add odd 1 2 3 4 5')">
+      <div class="cmd-name">add odd</div>
+      <div class="cmd-example">add odd 1 2 3 4 5</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('subtract 20 5 3')">
+      <div class="cmd-name">subtract / sub</div>
+      <div class="cmd-example">subtract 20 5 3</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('multiply 4 5 2')">
+      <div class="cmd-name">multiply / mul</div>
+      <div class="cmd-example">multiply 4 5 2</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('divide 100 4 5')">
+      <div class="cmd-name">divide / div</div>
+      <div class="cmd-example">divide 100 4 5</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('power 2 10')">
+      <div class="cmd-name">power / pow</div>
+      <div class="cmd-example">power 2 10</div>
+    </div>
+    <div class="cmd-card" onclick="runExample('sqrt 144')">
+      <div class="cmd-name">sqrt</div>
+      <div class="cmd-example">sqrt 144</div>
+    </div>
+  </div>
+
+  <script>
+    const output  = document.getElementById('output');
+    const input   = document.getElementById('cmdInput');
+    const history = [];
+    let histIdx   = -1;
+
+    // ── Print helpers ─────────────────────────────────────────
+    function print(parts) {
+      // parts = array of {text, cls}
+      const line = document.createElement('div');
+      line.className = 'line';
+      parts.forEach(({ text, cls }) => {
+        const span = document.createElement('span');
+        span.className = cls || '';
+        span.textContent = text;
+        line.appendChild(span);
+      });
+      output.appendChild(line);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function printCmd(cmd) {
+      print([
+        { text: '$ calc ', cls: 'c-prompt' },
+        { text: cmd,       cls: 'c-cmd'    },
+      ]);
+    }
+
+    function printGreen(text) { print([{ text, cls: 'c-green' }]); }
+    function printCyan(text)  { print([{ text, cls: 'c-cyan'  }]); }
+    function printRed(text)   { print([{ text, cls: 'c-red'   }]); }
+    function printYellow(text){ print([{ text, cls: 'c-yellow'}]); }
+    function printMuted(text) { print([{ text, cls: 'c-muted' }]); }
+    function printBlank()     { print([{ text: '' }]); }
+
+    // ── Command engine ─────────────────────────────────────────
+    function runCommand(raw) {
+      const parts  = raw.trim().split(/\s+/).filter(Boolean);
+      if (!parts.length) return;
+
+      const cmd    = parts[0].toLowerCase();
+      const args   = parts.slice(1);
+
+      printCmd(raw.trim());
+
+      // help
+      if (cmd === 'help' || cmd === '--help' || cmd === '-h') {
+        printMuted('Calculator CLI v1.0.0 — available commands:');
+        printBlank();
+        print([{ text: '  add      ', cls: 'c-cyan' }, { text: '<nums…> [-f]  Add multiple numbers', cls: 'c-muted' }]);
+        print([{ text: '  add even ', cls: 'c-cyan' }, { text: '<nums…>       Add only even numbers', cls: 'c-muted' }]);
+        print([{ text: '  add odd  ', cls: 'c-cyan' }, { text: '<nums…>       Add only odd numbers',  cls: 'c-muted' }]);
+        print([{ text: '  sub      ', cls: 'c-cyan' }, { text: '<nums…>       Subtract left-to-right', cls: 'c-muted' }]);
+        print([{ text: '  mul      ', cls: 'c-cyan' }, { text: '<nums…>       Multiply numbers',       cls: 'c-muted' }]);
+        print([{ text: '  div      ', cls: 'c-cyan' }, { text: '<nums…>       Divide left-to-right',   cls: 'c-muted' }]);
+        print([{ text: '  pow      ', cls: 'c-cyan' }, { text: '<base> <exp>  Raise to power',         cls: 'c-muted' }]);
+        print([{ text: '  sqrt     ', cls: 'c-cyan' }, { text: '<num>         Square root',            cls: 'c-muted' }]);
+        print([{ text: '  clear    ', cls: 'c-cyan' }, { text: '              Clear terminal',         cls: 'c-muted' }]);
+        printBlank();
+        return;
+      }
+
+      // clear
+      if (cmd === 'clear' || cmd === 'cls') {
+        output.innerHTML = '';
+        return;
+      }
+
+      // ── add ──────────────────────────────────────────────────
+      if (cmd === 'add') {
+        if (args[0] === 'even') {
+          const nums  = args.slice(1).map(Number);
+          const evens = nums.filter(n => n % 2 === 0);
+          if (evens.length === 0) { printYellow('No even numbers found.'); return; }
+          const result = evens.reduce((a, b) => a + b, 0);
+          printGreen(`Even numbers: ${evens.join(', ')}`);
+          printCyan(`Result: ${result}`);
+          return;
+        }
+        if (args[0] === 'odd') {
+          const nums = args.slice(1).map(Number);
+          const odds = nums.filter(n => n % 2 !== 0);
+          if (odds.length === 0) { printYellow('No odd numbers found.'); return; }
+          const result = odds.reduce((a, b) => a + b, 0);
+          printGreen(`Odd numbers: ${odds.join(', ')}`);
+          printCyan(`Result: ${result}`);
+          return;
+        }
+        // -f flag
+        const floatFlag = args.includes('-f') || args.includes('--float');
+        const numArgs   = args.filter(a => a !== '-f' && a !== '--float');
+        if (!numArgs.length) { printRed('Error: Provide at least one number.'); return; }
+        const nums = numArgs.map(Number);
+        if (nums.some(isNaN)) { printRed('Error: Invalid number(s).'); return; }
+        if (!floatFlag && nums.some(n => !Number.isInteger(n))) {
+          printRed('Error: Use -f flag for floating point numbers.');
+          return;
+        }
+        const result = nums.reduce((a, b) => a + b, 0);
+        printGreen(`Numbers: ${nums.join(' + ')}`);
+        printCyan(`Result: ${result}`);
+        return;
+      }
+
+      // ── subtract / sub ───────────────────────────────────────
+      if (cmd === 'subtract' || cmd === 'sub') {
+        if (!args.length) { printRed('Error: Provide at least one number.'); return; }
+        const nums = args.map(Number);
+        if (nums.some(isNaN)) { printRed('Error: Invalid number(s).'); return; }
+        const result = nums.reduce((a, b) => a - b);
+        printGreen(`Numbers: ${nums.join(' - ')}`);
+        printCyan(`Result: ${result}`);
+        return;
+      }
+
+      // ── multiply / mul ───────────────────────────────────────
+      if (cmd === 'multiply' || cmd === 'mul') {
+        if (!args.length) { printRed('Error: Provide at least one number.'); return; }
+        const nums = args.map(Number);
+        if (nums.some(isNaN)) { printRed('Error: Invalid number(s).'); return; }
+        const result = nums.reduce((a, b) => a * b, 1);
+        printGreen(`Numbers: ${nums.join(' × ')}`);
+        printCyan(`Result: ${result}`);
+        return;
+      }
+
+      // ── divide / div ─────────────────────────────────────────
+      if (cmd === 'divide' || cmd === 'div') {
+        if (!args.length) { printRed('Error: Provide at least one number.'); return; }
+        const nums = args.map(Number);
+        if (nums.some(isNaN)) { printRed('Error: Invalid number(s).'); return; }
+        if (nums.slice(1).some(n => n === 0)) {
+          printRed('Error: Division by zero is not allowed.');
+          return;
+        }
+        const result = nums.reduce((a, b) => a / b);
+        printGreen(`Numbers: ${nums.join(' ÷ ')}`);
+        printCyan(`Result: ${result}`);
+        return;
+      }
+
+      // ── power / pow ──────────────────────────────────────────
+      if (cmd === 'power' || cmd === 'pow') {
+        if (args.length < 2) { printRed('Error: Provide base and exponent. e.g. pow 2 8'); return; }
+        const b = Number(args[0]), e = Number(args[1]);
+        if (isNaN(b) || isNaN(e)) { printRed('Error: Invalid number(s).'); return; }
+        const result = Math.pow(b, e);
+        printGreen(`${b} ^ ${e}`);
+        printCyan(`Result: ${result}`);
+        return;
+      }
+
+      // ── sqrt ─────────────────────────────────────────────────
+      if (cmd === 'sqrt') {
+        if (!args.length) { printRed('Error: Provide a number. e.g. sqrt 64'); return; }
+        const n = Number(args[0]);
+        if (isNaN(n)) { printRed('Error: Invalid number.'); return; }
+        if (n < 0)    { printRed('Error: Cannot calculate square root of a negative number.'); return; }
+        printGreen(`√${n}`);
+        printCyan(`Result: ${Math.sqrt(n)}`);
+        return;
+      }
+
+      // unknown
+      printRed(`Error: Unknown command "${cmd}". Type "help" for available commands.`);
+    }
+
+    // ── Welcome message ────────────────────────────────────────
+    function welcome() {
+      print([{ text: 'Calculator CLI v1.0.0', cls: 'c-violet' }]);
+      printMuted('A command-line calculator — running in your browser.');
+      printMuted('Type "help" to see all commands, or click a card below.');
+      printBlank();
+    }
+
+    // ── Event listeners ────────────────────────────────────────
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = input.value;
+        if (val.trim()) {
+          history.unshift(val);
+          histIdx = -1;
+          runCommand(val);
+          printBlank();
+        }
+        input.value = '';
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+        else { histIdx = -1; input.value = ''; }
+      }
+    });
+
+    function runExample(cmd) {
+      input.value = cmd;
+      input.focus();
+      runCommand(cmd);
+      printBlank();
+      input.value = '';
+    }
+
+    // ── Init ───────────────────────────────────────────────────
+    welcome();
+  </script>
+</body>
+</html>
