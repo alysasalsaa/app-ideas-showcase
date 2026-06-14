@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bin2Dec</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #f8fafc;
+    }
+
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #0ea5e9;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1.5px solid #334155;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 1.5rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.3em;
+      text-align: center;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input[type="text"]:focus { border-color: #0ea5e9; }
+    input[type="text"].error { border-color: #ef4444; }
+
+    .error-msg {
+      font-size: 0.8rem;
+      color: #ef4444;
+      margin-top: 0.5rem;
+      min-height: 1.2rem;
+      text-align: left;
+    }
+
+    .result-box {
+      margin-top: 1.5rem;
+      background: #0f172a;
+      border: 1.5px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .result-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 0.4rem;
+    }
+
+    .result-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0ea5e9;
+      min-height: 3rem;
+      transition: opacity 0.2s;
+    }
+
+    .bit-display {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bit {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: monospace;
+      border: 1.5px solid #334155;
+      background: #1e293b;
+      color: #64748b;
+      transition: all 0.15s;
+    }
+
+    .bit.active-1 { background: #0ea5e9; border-color: #0ea5e9; color: #fff; }
+    .bit.active-0 { background: #1e3a5f; border-color: #1d4ed8; color: #93c5fd; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="badge">Tier 1 — Beginner</span>
+    <h1>Bin2Dec</h1>
+    <p class="subtitle">Binary → Decimal converter</p>
+
+    <label for="binary-input">Binary input (max 8 digits)</label>
+    <input
+      type="text"
+      id="binary-input"
+      maxlength="8"
+      placeholder="e.g. 1010"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <p class="error-msg" id="error-msg"></p>
+
+    <div class="result-box">
+      <div class="result-label">Decimal result</div>
+      <div class="result-value" id="result">—</div>
+    </div>
+
+    <div class="bit-display" id="bit-display"></div>
+  </div>
+
+  <script>
+    const input   = document.getElementById('binary-input');
+    const result  = document.getElementById('result');
+    const errMsg  = document.getElementById('error-msg');
+    const bitDisp = document.getElementById('bit-display');
+
+    function binaryToDecimal(binStr) {
+      let decimal = 0;
+      const len = binStr.length;
+      for (let i = 0; i < len; i++) {
+        const bit = Number(binStr[i]);
+        const power = len - 1 - i;
+        decimal += bit * Math.round(Math.exp(power * Math.LN2));
+      }
+      return decimal;
+    }
+
+    function renderBits(binStr) {
+      bitDisp.innerHTML = '';
+      const padded = binStr.padStart(8, ' ');
+      padded.split('').forEach(ch => {
+        const div = document.createElement('div');
+        div.classList.add('bit');
+        if (ch === '1') { div.classList.add('active-1'); div.textContent = '1'; }
+        else if (ch === '0') { div.classList.add('active-0'); div.textContent = '0'; }
+        else { div.textContent = ''; }
+        bitDisp.appendChild(div);
+      });
+    }
+
+    input.addEventListener('input', () => {
+      const val = input.value;
+
+      if (val && !/^[01]+$/.test(val)) {
+        input.classList.add('error');
+        errMsg.textContent = 'Only 0 and 1 are allowed.';
+        result.textContent = '—';
+        renderBits('');
+        return;
+      }
+
+      input.classList.remove('error');
+      errMsg.textContent = '';
+
+      if (val === '') {
+        result.textContent = '—';
+        renderBits('');
+        return;
+      }
+
+      result.textContent = binaryToDecimal(val);
+      renderBits(val);
+    });
+  </script>
+</body>
+</html>
