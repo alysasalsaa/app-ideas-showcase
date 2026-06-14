@@ -3,53 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>alysasalsaa — Project Showcase</title>
+  <title>Alysa Salsabila — Project Showcase</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-deep:      #020208;
-      --bg-base:      #06070f;
-      --bg-elevated:  #0d0f1e;
-      --surface:      rgba(255,255,255,0.035);
-      --surface-hover:rgba(255,255,255,0.065);
-      --border:       rgba(255,255,255,0.07);
-      --border-hover: rgba(139,92,246,0.5);
-      --text:         #eeeef0;
-      --text-muted:   #6b7280;
-      --text-dim:     #374151;
-
-      --violet:       #8b5cf6;
-      --violet-light: #a78bfa;
-      --violet-glow:  rgba(139,92,246,0.18);
-      --violet-glow2: rgba(139,92,246,0.06);
-      --indigo:       #6366f1;
-      --cyan:         #22d3ee;
-      --emerald:      #34d399;
-      --amber:        #fbbf24;
-      --rose:         #fb7185;
-
-      --radius-card:  20px;
-      --radius-sm:    10px;
-      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --bg:           #0C0B09;
+      --surface:      rgba(255,255,255,0.04);
+      --surface-hover:rgba(255,255,255,0.07);
+      --border:       rgba(255,255,255,0.08);
+      --border-hover: rgba(232,112,74,0.4);
+      --text:         #EDE8DF;
+      --text-muted:   #7A7468;
+      --text-dim:     #3A3832;
+      --accent:       #E8704A;
+      --accent-2:     #D4A843;
+      --accent-glow:  rgba(232,112,74,0.15);
+      --accent-glow2: rgba(232,112,74,0.06);
+      --amber-glow:   rgba(212,168,67,0.08);
+      --radius:       14px;
+      --ease:         cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg-deep);
-      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      font-family: 'DM Sans', system-ui, sans-serif;
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── Ambient Background ─── */
+    /* ── Ambient ── */
     .ambient {
       position: fixed;
       inset: 0;
@@ -61,255 +52,245 @@
     .blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.12;
-      animation: drift 20s ease-in-out infinite alternate;
+      filter: blur(90px);
+      animation: drift 22s ease-in-out infinite alternate;
     }
 
     .blob-1 {
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, #6366f1, transparent 70%);
-      top: -200px; left: -150px;
-      animation-duration: 25s;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,112,74,0.18), transparent 70%);
+      top: -180px; left: -100px;
+      animation-duration: 26s;
     }
 
     .blob-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, #8b5cf6, transparent 70%);
-      top: 30%; right: -100px;
-      animation-duration: 18s;
-      animation-delay: -8s;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,168,67,0.12), transparent 70%);
+      top: 20%; right: -80px;
+      animation-duration: 19s;
+      animation-delay: -9s;
     }
 
     .blob-3 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #22d3ee, transparent 70%);
-      bottom: 10%; left: 20%;
-      animation-duration: 22s;
-      animation-delay: -14s;
-      opacity: 0.06;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(232,112,74,0.08), transparent 70%);
+      bottom: 15%; left: 25%;
+      animation-duration: 24s;
+      animation-delay: -15s;
     }
 
     @keyframes drift {
       0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(40px, -30px) scale(1.05); }
-      66%  { transform: translate(-20px, 50px) scale(0.97); }
-      100% { transform: translate(30px, 20px) scale(1.03); }
+      33%  { transform: translate(30px, -25px) scale(1.04); }
+      66%  { transform: translate(-15px, 40px) scale(0.97); }
+      100% { transform: translate(25px, 15px) scale(1.02); }
     }
 
-    /* ─── Noise overlay ─── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
-
-    /* ─── Content wrapper ─── */
+    /* ── Page ── */
     .page { position: relative; z-index: 2; }
 
-    /* ─── Hero ─── */
+    /* ── Hero ── */
     .hero {
-      padding: 88px 24px 72px;
-      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 32px 56px;
       position: relative;
     }
 
     .hero::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0; left: 32px; right: 32px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent);
+      background: linear-gradient(90deg, var(--accent), rgba(212,168,67,0.4), transparent);
+      opacity: 0.3;
     }
 
+    .hero-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    .hero-label::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900;
-      line-height: 1.0;
-      letter-spacing: -2px;
-      margin-bottom: 16px;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.4rem, 7.5vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.93;
+      letter-spacing: -2.5px;
+      color: var(--text);
     }
 
-    .h1-top {
-      color: #ffffff;
+    .hero h1 span {
+      color: var(--accent);
+      display: block;
     }
 
-    .h1-bot {
-      background: linear-gradient(135deg, var(--violet-light) 0%, var(--cyan) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--violet-light);
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      margin: 0 auto;
-    }
-
-
-
-    /* ─── Toolbar ─── */
+    /* ── Toolbar ── */
     .toolbar {
       max-width: 1100px;
-      margin: 40px auto 0;
-      padding: 0 24px;
+      margin: 0 auto;
+      padding: 28px 32px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       align-items: center;
+      border-bottom: 1px solid var(--border);
     }
 
     .search-wrap {
       flex: 1;
-      min-width: 220px;
+      min-width: 200px;
       display: flex;
       align-items: center;
+      gap: 10px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: var(--radius);
+      padding: 0 14px;
       backdrop-filter: blur(8px);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .search-wrap:focus-within {
-      border-color: rgba(139,92,246,0.4);
-      box-shadow: 0 0 0 3px rgba(139,92,246,0.08);
+      border-color: rgba(232,112,74,0.45);
+      box-shadow: 0 0 0 3px var(--accent-glow2);
     }
 
-    .search-icon {
-      padding: 0 12px;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-    }
+    .search-wrap svg { color: var(--text-muted); flex-shrink: 0; }
 
     .search-wrap input {
       flex: 1;
-      padding: 12px 12px 12px 0;
+      padding: 12px 0;
       background: transparent;
       border: none;
       color: var(--text);
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       outline: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .search-wrap input::placeholder { color: var(--text-dim); }
 
-    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-group { display: flex; gap: 6px; }
 
     .filter-btn {
       padding: 10px 18px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius);
       background: var(--surface);
       color: var(--text-muted);
       font-size: 0.78rem;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 0.18s var(--ease-out);
+      transition: all 0.18s var(--ease);
+      font-family: 'DM Sans', sans-serif;
       white-space: nowrap;
       backdrop-filter: blur(8px);
-      font-family: 'Inter', sans-serif;
     }
 
     .filter-btn:hover {
-      border-color: rgba(139,92,246,0.4);
-      color: var(--violet-light);
-      background: var(--violet-glow2);
+      border-color: rgba(232,112,74,0.3);
+      color: var(--text);
     }
 
     .filter-btn.active {
-      background: var(--violet-glow);
-      border-color: rgba(139,92,246,0.45);
-      color: var(--violet-light);
+      background: var(--accent-glow);
+      border-color: rgba(232,112,74,0.5);
+      color: var(--accent);
     }
 
-    /* ─── Count bar ─── */
+    /* ── Count bar ── */
     .count-bar {
       max-width: 1100px;
-      margin: 16px auto 0;
-      padding: 0 24px;
-      font-size: 0.75rem;
+      margin: 0 auto;
+      padding: 14px 32px;
+      font-size: 0.7rem;
       color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Geist Mono', monospace;
+      border-bottom: 1px solid var(--border);
     }
 
-    .count-bar strong { color: var(--violet-light); }
+    .count-bar strong { color: var(--accent); }
 
-    /* ─── Grid ─── */
+    /* ── Grid ── */
     .grid {
       max-width: 1100px;
-      margin: 20px auto 72px;
-      padding: 0 24px;
+      margin: 0 auto 80px;
+      padding: 20px 32px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+      gap: 12px;
     }
 
-    /* ─── Card ─── */
+    /* ── Card ── */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-card);
+      border-radius: var(--radius);
       padding: 22px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      transition: transform 0.28s var(--ease-out),
-                  border-color 0.28s,
-                  box-shadow 0.28s,
-                  background 0.28s;
+      gap: 12px;
       text-decoration: none;
       color: inherit;
-      cursor: pointer;
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
+      transition: border-color 0.22s var(--ease),
+                  background 0.22s var(--ease),
+                  transform 0.22s var(--ease),
+                  box-shadow 0.22s var(--ease);
+      opacity: 0;
+      animation: fadeUp 0.45s var(--ease) forwards;
     }
 
-    /* Top accent line */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* warm glow on hover */
     .card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--card-color, var(--violet)), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    /* Glow on hover */
-    .card::after {
-      content: '';
-      position: absolute;
       inset: 0;
-      border-radius: var(--radius-card);
-      background: radial-gradient(circle at 50% 0%, var(--card-glow, rgba(139,92,246,0.06)), transparent 65%);
+      border-radius: var(--radius);
+      background: radial-gradient(circle at 30% 0%, var(--accent-glow), transparent 60%);
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
     }
 
+    /* top accent line */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
     .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(139,92,246,0.28);
+      border-color: var(--border-hover);
       background: var(--surface-hover);
-      box-shadow:
-        0 0 0 1px rgba(139,92,246,0.12),
-        0 12px 40px rgba(0,0,0,0.5),
-        0 4px 16px rgba(0,0,0,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,112,74,0.1);
     }
 
     .card:hover::before { opacity: 1; }
@@ -323,144 +304,121 @@
     }
 
     .card-icon-wrap {
-      width: 44px; height: 44px;
-      border-radius: 12px;
+      width: 38px; height: 38px;
+      border-radius: 10px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--text-muted);
       flex-shrink: 0;
-      transition: transform 0.25s var(--ease-spring);
-      color: var(--card-color, var(--violet-light));
-    }
-
-    .card-icon-wrap svg {
-      width: 20px; height: 20px;
-      flex-shrink: 0;
+      transition: color 0.18s, border-color 0.18s, transform 0.22s var(--ease-spring);
     }
 
     .card:hover .card-icon-wrap {
-      transform: scale(1.08) rotate(-3deg);
+      color: var(--accent);
+      border-color: rgba(232,112,74,0.3);
+      transform: scale(1.08) rotate(-4deg);
     }
 
-    .card-tier {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-      font-family: 'JetBrains Mono', monospace;
+    .card-icon-wrap svg { width: 16px; height: 16px; }
+
+    .card-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      font-weight: 500;
+      transition: color 0.18s;
+      padding-top: 2px;
     }
 
-    .tier-1 {
-      background: rgba(52,211,153,0.08);
-      color: var(--emerald);
-      border: 1px solid rgba(52,211,153,0.2);
-    }
-    .tier-2 {
-      background: rgba(251,191,36,0.08);
-      color: var(--amber);
-      border: 1px solid rgba(251,191,36,0.2);
-    }
-    .tier-3 {
-      background: rgba(251,113,133,0.08);
-      color: var(--rose);
-      border: 1px solid rgba(251,113,133,0.2);
-    }
+    .card:hover .card-num { color: var(--accent); }
 
     .card-title {
-      font-size: 0.98rem;
-      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text);
-      line-height: 1.25;
-      letter-spacing: -0.2px;
+      line-height: 1.2;
+      letter-spacing: -0.1px;
     }
 
     .card-desc {
-      font-size: 0.79rem;
+      font-size: 0.77rem;
       color: var(--text-muted);
       line-height: 1.65;
       flex: 1;
       font-weight: 400;
     }
 
-    .card-tags {
+    .card-footer {
       display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
+    .card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
     .tag {
-      font-size: 0.62rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: rgba(139,92,246,0.08);
-      color: #7c85ff;
-      border: 1px solid rgba(139,92,246,0.15);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.02em;
-      transition: background 0.15s, color 0.15s;
+      font-size: 0.59rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(232,112,74,0.07);
+      color: var(--text-muted);
+      border: 1px solid rgba(232,112,74,0.12);
+      font-family: 'Geist Mono', monospace;
+      letter-spacing: 0.03em;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
 
     .card:hover .tag {
-      background: rgba(139,92,246,0.12);
-      color: var(--violet-light);
+      background: rgba(232,112,74,0.12);
+      color: var(--accent);
+      border-color: rgba(232,112,74,0.25);
     }
 
+    .card-tier {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.57rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
 
+    .card:hover .card-tier { color: var(--text-muted); }
 
-    /* ─── Empty state ─── */
+    /* ── Empty ── */
     .empty {
       grid-column: 1/-1;
       text-align: center;
       padding: 80px 20px;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
     }
 
-    .empty-icon { width: 40px; height: 40px; margin: 0 auto 12px; display: block; opacity: 0.35; color: var(--text-muted); }
+    .empty svg { display: block; margin: 0 auto 12px; opacity: 0.2; width: 30px; height: 30px; }
 
-
-
-    /* ─── Scroll animations ─── */
-    .card {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.5s var(--ease-out) forwards;
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { padding: 56px 20px 40px; }
+      .hero::after { left: 20px; right: 20px; }
+      .toolbar, .count-bar { padding-left: 20px; padding-right: 20px; }
+      .grid { padding: 16px 20px 60px; gap: 10px; }
     }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── Responsive ─── */
-    @media (max-width: 600px) {
-      .hero { padding: 64px 16px 52px; }
-      .hero-stats { max-width: 100%; }
-      .toolbar { padding: 0 16px; }
-      .grid { padding: 0 16px; gap: 12px; }
-    }
-
-    /* ─── Focus styles ─── */
-    :focus-visible {
-      outline: 2px solid rgba(139,92,246,0.6);
-      outline-offset: 3px;
-    }
-
-    /* ─── Reduced motion ─── */
     @media (prefers-reduced-motion: reduce) {
-      .blob, .card, .eyebrow-dot { animation: none; }
+      .blob, .card { animation: none; }
       .card { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient blobs -->
   <div class="ambient" aria-hidden="true">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -469,18 +427,14 @@
 
   <div class="page">
 
-    <!-- Hero -->
     <header class="hero">
-      <h1><span class="h1-top">PROJECT </span><span class="h1-bot">SHOWCASE</span></h1>
-      <p class="hero-sub">Alysa Salsabila Irfan Putri</p>
+      <p class="hero-label">Alysa Salsabila Irfan Putri</p>
+      <h1>PROJECT <span>SHOWCASE</span></h1>
     </header>
 
-    <!-- Toolbar -->
     <div class="toolbar">
       <div class="search-wrap">
-        <span class="search-icon">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" id="searchInput" placeholder="Search projects…" oninput="filterCards()" autocomplete="off" />
       </div>
       <div class="filter-group">
@@ -490,30 +444,25 @@
       </div>
     </div>
 
-    <!-- Count -->
     <div class="count-bar">
-      <strong id="showCount">38</strong> projects found
+      <strong id="showCount">41</strong> projects
     </div>
 
-    <!-- Grid -->
-    <main class="grid" id="grid" aria-label="Project list"></main>
+    <main class="grid" id="grid"></main>
 
-
-
-  </div><!-- .page -->
+  </div>
 
   <script>
-    // SVG icon library — all 20x20 viewBox, stroke-based, currentColor
     const ICONS = {
       hash:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>`,
       square:    `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>`,
-      file:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+      file:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
       calculator:`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>`,
       calendar:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
       link:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
       sparkles:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L9.5 9.5 3 12l6.5 2.5L12 21l2.5-6.5L21 12l-6.5-2.5Z"/></svg>`,
       palette:   `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
-      timer:     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="M22 6l-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg>`,
+      timer:     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="M22 6l-3-3"/></svg>`,
       banknote:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>`,
       sliders:   `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>`,
       database:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`,
@@ -537,7 +486,7 @@
       slidershz: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="2"/><path d="M2 12h4m4 0h12"/></svg>`,
       stopwatch: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4"/><path d="M9.5 2.5h5"/><path d="M16.5 4.5l1.5-1.5"/></svg>`,
       checkcirc: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
-      keyboard:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8M6 10h.01"/></svg>`,
+      keyboard:  `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>`,
       lock:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
       cloud:     `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
       wind:      `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
@@ -547,56 +496,51 @@
     };
 
     const PROJECTS = [
-      { name:'Bin2Dec', icon:ICONS.hash, desc:'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.', tier:1, tags:['Math','Converter'], color:'#22d3ee', repo:'https://alysasalsaa.github.io/bin2dec-app' },
-      { name:'Border Radius Previewer', icon:ICONS.square, desc:'Preview and customize CSS border-radius values interactively with live code output.', tier:1, tags:['CSS','Tool'], color:'#8b5cf6', repo:'https://alysasalsaa.github.io/border-radius-previewer' },
-      { name:'CSV2JSON', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tier:1, tags:['Converter','Data'], color:'#34d399', repo:'https://alysasalsaa.github.io/csv2json-app' },
-      { name:'Calculator', icon:ICONS.calculator, desc:'A clean, functional calculator with keyboard support and expression history.', tier:1, tags:['Math','Tool'], color:'#6366f1', repo:'https://alysasalsaa.github.io/calculator-app' },
-      { name:'Calendar', icon:ICONS.calendar, desc:'Interactive calendar with month navigation and event marking.', tier:1, tags:['Date','UI'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/calendar-app' },
-      { name:'Cause & Effect', icon:ICONS.link, desc:'Master-detail UI pattern — click a name to view their full profile.', tier:1, tags:['UI','Pattern'], color:'#f472b6', repo:'https://alysasalsaa.github.io/cause-effect-app' },
-      { name:'Christmas Lights', icon:ICONS.sparkles, desc:'Rippling holiday light display with customizable colors, size, brightness, and rows.', tier:1, tags:['Animation','Fun'], color:'#ef4444', repo:'https://alysasalsaa.github.io/christmas-lights-app' },
-      { name:'Color Cycle', icon:ICONS.palette, desc:'RGB color cycling display — watch colors shift over time with customizable increments.', tier:1, tags:['Color','Animation'], color:'#a855f7', repo:'https://alysasalsaa.github.io/colorcycle-app' },
-      { name:'Countdown Timer', icon:ICONS.timer, desc:'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.', tier:1, tags:['Timer','Date'], color:'#22d3ee', repo:'https://alysasalsaa.github.io/countdown-timer-app' },
-      { name:'Dollars to Rupiah', icon:ICONS.banknote, desc:'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.', tier:1, tags:['Finance','API'], color:'#34d399', repo:'https://alysasalsaa.github.io/dollars-to-rupiah-app' },
-      { name:'Dynamic CSS Variables', icon:ICONS.sliders, desc:'Login form demonstrating real-time CSS variable updates on validation errors.', tier:1, tags:['CSS','Form'], color:'#7c3aed', repo:'https://alysasalsaa.github.io/dynamic-css-variables-app' },
-      { name:'First DB App', icon:ICONS.database, desc:'IndexedDB browser database explorer — load, query, and clear customer data.', tier:1, tags:['Database','IndexedDB'], color:'#7c3aed', repo:'https://alysasalsaa.github.io/first-db-app' },
-      { name:'Flip Image', icon:ICONS.image, desc:'Flip and mirror images horizontally or vertically with download support.', tier:1, tags:['Image','Canvas'], color:'#0ea5e9', repo:'https://alysasalsaa.github.io/flip-image' },
-      { name:'GitHub Status', icon:ICONS.github, desc:'Check GitHub user profiles and repo stats using the GitHub API.', tier:1, tags:['API','GitHub'], color:'#a78bfa', repo:'https://alysasalsaa.github.io/github-status' },
-      { name:'Hello App', icon:ICONS.hand, desc:'A simple greeting app — the classic first step of every developer.', tier:1, tags:['Beginner','Simple'], color:'#34d399', repo:'https://alysasalsaa.github.io/hello-app' },
-      { name:'IoT Mailbox', icon:ICONS.mailbox, desc:'Simulated IoT mailbox sensor dashboard with notification alerts.', tier:1, tags:['IoT','Dashboard'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/iot-mailbox' },
-      { name:'JSON2CSV', icon:ICONS.barchart, desc:'Convert JSON arrays to downloadable CSV files instantly in the browser.', tier:1, tags:['Converter','Data'], color:'#34d399', repo:'https://alysasalsaa.github.io/json2csv-app' },
-      { name:'Regex Validation', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tier:1, tags:['Regex','Form'], color:'#fb7185', repo:'https://alysasalsaa.github.io/regex-validation' },
-      { name:'Key Value Store', icon:ICONS.key, desc:'Browser-based key-value store using localStorage with CRUD operations.', tier:1, tags:['Storage','CRUD'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/key-value' },
-      { name:'Lorem Ipsum Generator', icon:ICONS.text, desc:'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.', tier:1, tags:['Generator','Text'], color:'#6366f1', repo:'https://alysasalsaa.github.io/lorem-ipsum-generator' },
-      { name:'Notes App', icon:ICONS.notebook, desc:'Create, edit, and delete notes with localStorage persistence.', tier:1, tags:['CRUD','Storage'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/notes-app' },
-      { name:'Pearson Regression', icon:ICONS.trending, desc:'Calculate Pearson correlation coefficient and plot scatter regression charts.', tier:1, tags:['Math','Chart'], color:'#22d3ee', repo:'https://alysasalsaa.github.io/pearson-regression' },
-      { name:'Pomodoro Clock', icon:ICONS.clock, desc:'Pomodoro productivity timer with work/break cycles and session tracking.', tier:1, tags:['Timer','Productivity'], color:'#fb7185', repo:'https://alysasalsaa.github.io/pomodoro-clock' },
-      { name:'Product Landing Page', icon:ICONS.shoppingbag, desc:'A responsive product landing page with hero, features, and CTA sections.', tier:1, tags:['UI','Landing'], color:'#8b5cf6', repo:'https://alysasalsaa.github.io/product-landing-page' },
-      { name:'Quiz App', icon:ICONS.helpcirc, desc:'Multiple choice quiz with score tracking, timer, and result summary.', tier:1, tags:['Quiz','Game'], color:'#7c3aed', repo:'https://alysasalsaa.github.io/quiz-app' },
-      { name:'Random Meal Generator', icon:ICONS.utensils, desc:'Generate random meal ideas with ingredients and instructions from MealDB API.', tier:1, tags:['API','Food'], color:'#f97316', repo:'https://alysasalsaa.github.io/random-meal-generator' },
-      { name:'Random Number Generator', icon:ICONS.dice, desc:'Generate random numbers within a custom range with history tracking.', tier:1, tags:['Math','Random'], color:'#6366f1', repo:'https://alysasalsaa.github.io/random-number-generator' },
-      { name:'Recipe App', icon:ICONS.chef, desc:'Search and browse recipes with ingredients, steps, and serving size adjustment.', tier:1, tags:['API','Food'], color:'#ea580c', repo:'https://alysasalsaa.github.io/recipe-app' },
-      { name:'Roman to Decimal', icon:ICONS.landmark, desc:'Convert Roman numerals to decimal numbers and vice versa.', tier:1, tags:['Math','Converter'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/roman-decimal-converter' },
-      { name:'Slider Design', icon:ICONS.slidershz, desc:'Interactive image or content slider with smooth transitions and controls.', tier:1, tags:['UI','Animation'], color:'#0ea5e9', repo:'https://alysasalsaa.github.io/slider-design' },
-      { name:'Stopwatch', icon:ICONS.stopwatch, desc:'Precision stopwatch with lap tracking, split times, and animated ring display.', tier:1, tags:['Timer','Tool'], color:'#6366f1', repo:'https://alysasalsaa.github.io/stopwatch-app' },
-      { name:'True or False', icon:ICONS.checkcirc, desc:'JavaScript conditional expression evaluator — test truthiness without eval().', tier:1, tags:['JavaScript','Logic'], color:'#34d399', repo:'https://alysasalsaa.github.io/true-or-false-app' },
-      { name:'Typing Speed Test', icon:ICONS.keyboard, desc:'Measure WPM and accuracy with live error highlighting, difficulty levels, and history.', tier:1, tags:['Game','Tool'], color:'#6366f1', repo:'https://alysasalsaa.github.io/typing-speed-test-app' },
-      { name:'Vigenère Cipher', icon:ICONS.lock, desc:'Classical polyalphabetic encryption and decryption — implemented without eval().', tier:1, tags:['Security','Crypto'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/vigenere-cipher-app' },
-      { name:'Weather App', icon:ICONS.cloud, desc:'Real-time weather by city using Open-Meteo — no API key needed.', tier:1, tags:['API','Weather'], color:'#22d3ee', repo:'https://alysasalsaa.github.io/weather-app' },
-      { name:'Windchill', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tier:1, tags:['Math','Weather'], color:'#0ea5e9', repo:'https://alysasalsaa.github.io/windchill-app' },
-      { name:'Word Frequency', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tier:1, tags:['Text','Chart'], color:'#a78bfa', repo:'https://alysasalsaa.github.io/word-frequency-app' },
-      { name:'Bit Masks', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tier:2, tags:['Algorithm','Bitwise'], color:'#fbbf24', repo:'https://alysasalsaa.github.io/bit-masks-app' },
-      { name:'Book Finder App', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tier:2, tags:['API','Search'], color:'#a78bfa', repo:'https://alysasalsaa.github.io/book-finder-app' },
-      { name:'Calculator CLI', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tier:2, tags:['CLI','Node.js'], color:'#4ade80', repo:'calculator-cli/calculator-cli.html' },
+      { name:'Bin2Dec', icon:ICONS.hash, desc:'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.', tier:1, tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/bin2dec-app' },
+      { name:'Border Radius Previewer', icon:ICONS.square, desc:'Preview and customize CSS border-radius values interactively with live code output.', tier:1, tags:['CSS','Tool'], repo:'https://alysasalsaa.github.io/border-radius-previewer' },
+      { name:'CSV2JSON', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tier:1, tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/csv2json-app' },
+      { name:'Calculator', icon:ICONS.calculator, desc:'A clean, functional calculator with keyboard support and expression history.', tier:1, tags:['Math','Tool'], repo:'https://alysasalsaa.github.io/calculator-app' },
+      { name:'Calendar', icon:ICONS.calendar, desc:'Interactive calendar with month navigation and event marking.', tier:1, tags:['Date','UI'], repo:'https://alysasalsaa.github.io/calendar-app' },
+      { name:'Cause & Effect', icon:ICONS.link, desc:'Master-detail UI pattern — click a name to view their full profile.', tier:1, tags:['UI','Pattern'], repo:'https://alysasalsaa.github.io/cause-effect-app' },
+      { name:'Christmas Lights', icon:ICONS.sparkles, desc:'Rippling holiday light display with customizable colors, size, brightness, and rows.', tier:1, tags:['Animation','Fun'], repo:'https://alysasalsaa.github.io/christmas-lights-app' },
+      { name:'Color Cycle', icon:ICONS.palette, desc:'RGB color cycling display — watch colors shift over time with customizable increments.', tier:1, tags:['Color','Animation'], repo:'https://alysasalsaa.github.io/colorcycle-app' },
+      { name:'Countdown Timer', icon:ICONS.timer, desc:'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.', tier:1, tags:['Timer','Date'], repo:'https://alysasalsaa.github.io/countdown-timer-app' },
+      { name:'Dollars to Rupiah', icon:ICONS.banknote, desc:'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.', tier:1, tags:['Finance','API'], repo:'https://alysasalsaa.github.io/dollars-to-rupiah-app' },
+      { name:'Dynamic CSS Variables', icon:ICONS.sliders, desc:'Login form demonstrating real-time CSS variable updates on validation errors.', tier:1, tags:['CSS','Form'], repo:'https://alysasalsaa.github.io/dynamic-css-variables-app' },
+      { name:'First DB App', icon:ICONS.database, desc:'IndexedDB browser database explorer — load, query, and clear customer data.', tier:1, tags:['Database','IndexedDB'], repo:'https://alysasalsaa.github.io/first-db-app' },
+      { name:'Flip Image', icon:ICONS.image, desc:'Flip and mirror images horizontally or vertically with download support.', tier:1, tags:['Image','Canvas'], repo:'https://alysasalsaa.github.io/flip-image' },
+      { name:'GitHub Status', icon:ICONS.github, desc:'Check GitHub user profiles and repo stats using the GitHub API.', tier:1, tags:['API','GitHub'], repo:'https://alysasalsaa.github.io/github-status' },
+      { name:'Hello App', icon:ICONS.hand, desc:'A simple greeting app — the classic first step of every developer.', tier:1, tags:['Beginner','Simple'], repo:'https://alysasalsaa.github.io/hello-app' },
+      { name:'IoT Mailbox', icon:ICONS.mailbox, desc:'Simulated IoT mailbox sensor dashboard with notification alerts.', tier:1, tags:['IoT','Dashboard'], repo:'https://alysasalsaa.github.io/iot-mailbox' },
+      { name:'JSON2CSV', icon:ICONS.barchart, desc:'Convert JSON arrays to downloadable CSV files instantly in the browser.', tier:1, tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/json2csv-app' },
+      { name:'Regex Validation', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tier:1, tags:['Regex','Form'], repo:'https://alysasalsaa.github.io/regex-validation' },
+      { name:'Key Value Store', icon:ICONS.key, desc:'Browser-based key-value store using localStorage with CRUD operations.', tier:1, tags:['Storage','CRUD'], repo:'https://alysasalsaa.github.io/key-value' },
+      { name:'Lorem Ipsum Generator', icon:ICONS.text, desc:'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.', tier:1, tags:['Generator','Text'], repo:'https://alysasalsaa.github.io/lorem-ipsum-generator' },
+      { name:'Notes App', icon:ICONS.notebook, desc:'Create, edit, and delete notes with localStorage persistence.', tier:1, tags:['CRUD','Storage'], repo:'https://alysasalsaa.github.io/notes-app' },
+      { name:'Pearson Regression', icon:ICONS.trending, desc:'Calculate Pearson correlation coefficient and plot scatter regression charts.', tier:1, tags:['Math','Chart'], repo:'https://alysasalsaa.github.io/pearson-regression' },
+      { name:'Pomodoro Clock', icon:ICONS.clock, desc:'Pomodoro productivity timer with work/break cycles and session tracking.', tier:1, tags:['Timer','Productivity'], repo:'https://alysasalsaa.github.io/pomodoro-clock' },
+      { name:'Product Landing Page', icon:ICONS.shoppingbag, desc:'A responsive product landing page with hero, features, and CTA sections.', tier:1, tags:['UI','Landing'], repo:'https://alysasalsaa.github.io/product-landing-page' },
+      { name:'Quiz App', icon:ICONS.helpcirc, desc:'Multiple choice quiz with score tracking, timer, and result summary.', tier:1, tags:['Quiz','Game'], repo:'https://alysasalsaa.github.io/quiz-app' },
+      { name:'Random Meal Generator', icon:ICONS.utensils, desc:'Generate random meal ideas with ingredients and instructions from MealDB API.', tier:1, tags:['API','Food'], repo:'https://alysasalsaa.github.io/random-meal-generator' },
+      { name:'Random Number Generator', icon:ICONS.dice, desc:'Generate random numbers within a custom range with history tracking.', tier:1, tags:['Math','Random'], repo:'https://alysasalsaa.github.io/random-number-generator' },
+      { name:'Recipe App', icon:ICONS.chef, desc:'Search and browse recipes with ingredients, steps, and serving size adjustment.', tier:1, tags:['API','Food'], repo:'https://alysasalsaa.github.io/recipe-app' },
+      { name:'Roman to Decimal', icon:ICONS.landmark, desc:'Convert Roman numerals to decimal numbers and vice versa.', tier:1, tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/roman-decimal-converter' },
+      { name:'Slider Design', icon:ICONS.slidershz, desc:'Interactive image or content slider with smooth transitions and controls.', tier:1, tags:['UI','Animation'], repo:'https://alysasalsaa.github.io/slider-design' },
+      { name:'Stopwatch', icon:ICONS.stopwatch, desc:'Precision stopwatch with lap tracking, split times, and animated ring display.', tier:1, tags:['Timer','Tool'], repo:'https://alysasalsaa.github.io/stopwatch-app' },
+      { name:'True or False', icon:ICONS.checkcirc, desc:'JavaScript conditional expression evaluator — test truthiness without eval().', tier:1, tags:['JavaScript','Logic'], repo:'https://alysasalsaa.github.io/true-or-false-app' },
+      { name:'Typing Speed Test', icon:ICONS.keyboard, desc:'Measure WPM and accuracy with live error highlighting, difficulty levels, and history.', tier:1, tags:['Game','Tool'], repo:'https://alysasalsaa.github.io/typing-speed-test-app' },
+      { name:'Vigenère Cipher', icon:ICONS.lock, desc:'Classical polyalphabetic encryption and decryption — implemented without eval().', tier:1, tags:['Security','Crypto'], repo:'https://alysasalsaa.github.io/vigenere-cipher-app' },
+      { name:'Weather App', icon:ICONS.cloud, desc:'Real-time weather by city using Open-Meteo — no API key needed.', tier:1, tags:['API','Weather'], repo:'https://alysasalsaa.github.io/weather-app' },
+      { name:'Windchill', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tier:1, tags:['Math','Weather'], repo:'https://alysasalsaa.github.io/windchill-app' },
+      { name:'Word Frequency', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tier:1, tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' },
+      { name:'Bit Masks', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tier:2, tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
+      { name:'Book Finder App', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tier:2, tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
+      { name:'Calculator CLI', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tier:2, tags:['CLI','Node.js'], repo:'calculator-cli/calculator-cli.html' },
     ];
 
     let activeFilter = 'all';
 
-    function hexToRgb(hex) {
-      const r = parseInt(hex.slice(1,3),16);
-      const g = parseInt(hex.slice(3,5),16);
-      const b = parseInt(hex.slice(5,7),16);
-      return `${r},${g},${b}`;
-    }
+    function pad(n) { return String(n).padStart(2, '0'); }
 
     function buildGrid(list) {
       const grid = document.getElementById('grid');
@@ -604,11 +548,10 @@
       document.getElementById('showCount').textContent = list.length;
 
       if (list.length === 0) {
-        grid.innerHTML = `
-          <div class="empty">
-            <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            No projects match your search.
-          </div>`;
+        grid.innerHTML = `<div class="empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          No projects match your search.
+        </div>`;
         return;
       }
 
@@ -618,23 +561,21 @@
         card.href = p.repo;
         card.target = '_blank';
         card.rel = 'noopener noreferrer';
-        card.style.setProperty('--card-color', p.color);
-        card.style.setProperty('--card-glow', `rgba(${hexToRgb(p.color)},0.07)`);
-        card.style.animationDelay = `${Math.min(i * 35, 500)}ms`;
+        card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
-        const tierLabel = p.tier === 1 ? 'Beginner' : p.tier === 2 ? 'Intermediate' : 'Advanced';
+        const tierLabel = p.tier === 1 ? 'Beginner' : 'Intermediate';
 
         card.innerHTML = `
           <div class="card-top">
             <div class="card-icon-wrap">${p.icon}</div>
-            <span class="card-tier tier-${p.tier}">${tierLabel}</span>
+            <span class="card-num">${pad(i + 1)}</span>
           </div>
           <div class="card-title">${p.name}</div>
           <div class="card-desc">${p.desc}</div>
-          <div class="card-tags">
-            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          <div class="card-footer">
+            <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            <span class="card-tier">${tierLabel}</span>
           </div>
-
         `;
         grid.appendChild(card);
       });
@@ -660,9 +601,8 @@
       buildGrid(filtered);
     }
 
-    document.getElementById('showCount').textContent  = PROJECTS.length;
+    document.getElementById('showCount').textContent = PROJECTS.length;
     buildGrid(PROJECTS);
   </script>
 </body>
 </html>
-
