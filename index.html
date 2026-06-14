@@ -439,8 +439,12 @@
       </div>
       <div class="filter-group">
         <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
-        <button class="filter-btn" onclick="setFilter('1', this)">Beginner</button>
-        <button class="filter-btn" onclick="setFilter('2', this)">Intermediate</button>
+        <button class="filter-btn" onclick="setFilter('tool', this)">Tool</button>
+        <button class="filter-btn" onclick="setFilter('game', this)">Game</button>
+        <button class="filter-btn" onclick="setFilter('api', this)">API</button>
+        <button class="filter-btn" onclick="setFilter('data', this)">Data</button>
+        <button class="filter-btn" onclick="setFilter('security', this)">Security</button>
+        <button class="filter-btn" onclick="setFilter('algorithm', this)">Algorithm</button>
       </div>
     </div>
 
@@ -496,48 +500,48 @@
     };
 
     const PROJECTS = [
-      { name:'Bin2Dec', icon:ICONS.hash, desc:'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.', tier:1, tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/bin2dec-app' },
-      { name:'Border Radius Previewer', icon:ICONS.square, desc:'Preview and customize CSS border-radius values interactively with live code output.', tier:1, tags:['CSS','Tool'], repo:'https://alysasalsaa.github.io/border-radius-previewer' },
-      { name:'CSV2JSON', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tier:1, tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/csv2json-app' },
-      { name:'Calculator', icon:ICONS.calculator, desc:'A clean, functional calculator with keyboard support and expression history.', tier:1, tags:['Math','Tool'], repo:'https://alysasalsaa.github.io/calculator-app' },
-      { name:'Calendar', icon:ICONS.calendar, desc:'Interactive calendar with month navigation and event marking.', tier:1, tags:['Date','UI'], repo:'https://alysasalsaa.github.io/calendar-app' },
-      { name:'Cause & Effect', icon:ICONS.link, desc:'Master-detail UI pattern — click a name to view their full profile.', tier:1, tags:['UI','Pattern'], repo:'https://alysasalsaa.github.io/cause-effect-app' },
-      { name:'Christmas Lights', icon:ICONS.sparkles, desc:'Rippling holiday light display with customizable colors, size, brightness, and rows.', tier:1, tags:['Animation','Fun'], repo:'https://alysasalsaa.github.io/christmas-lights-app' },
-      { name:'Color Cycle', icon:ICONS.palette, desc:'RGB color cycling display — watch colors shift over time with customizable increments.', tier:1, tags:['Color','Animation'], repo:'https://alysasalsaa.github.io/colorcycle-app' },
-      { name:'Countdown Timer', icon:ICONS.timer, desc:'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.', tier:1, tags:['Timer','Date'], repo:'https://alysasalsaa.github.io/countdown-timer-app' },
-      { name:'Dollars to Rupiah', icon:ICONS.banknote, desc:'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.', tier:1, tags:['Finance','API'], repo:'https://alysasalsaa.github.io/dollars-to-rupiah-app' },
-      { name:'Dynamic CSS Variables', icon:ICONS.sliders, desc:'Login form demonstrating real-time CSS variable updates on validation errors.', tier:1, tags:['CSS','Form'], repo:'https://alysasalsaa.github.io/dynamic-css-variables-app' },
-      { name:'First DB App', icon:ICONS.database, desc:'IndexedDB browser database explorer — load, query, and clear customer data.', tier:1, tags:['Database','IndexedDB'], repo:'https://alysasalsaa.github.io/first-db-app' },
-      { name:'Flip Image', icon:ICONS.image, desc:'Flip and mirror images horizontally or vertically with download support.', tier:1, tags:['Image','Canvas'], repo:'https://alysasalsaa.github.io/flip-image' },
-      { name:'GitHub Status', icon:ICONS.github, desc:'Check GitHub user profiles and repo stats using the GitHub API.', tier:1, tags:['API','GitHub'], repo:'https://alysasalsaa.github.io/github-status' },
-      { name:'Hello App', icon:ICONS.hand, desc:'A simple greeting app — the classic first step of every developer.', tier:1, tags:['Beginner','Simple'], repo:'https://alysasalsaa.github.io/hello-app' },
-      { name:'IoT Mailbox', icon:ICONS.mailbox, desc:'Simulated IoT mailbox sensor dashboard with notification alerts.', tier:1, tags:['IoT','Dashboard'], repo:'https://alysasalsaa.github.io/iot-mailbox' },
-      { name:'JSON2CSV', icon:ICONS.barchart, desc:'Convert JSON arrays to downloadable CSV files instantly in the browser.', tier:1, tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/json2csv-app' },
-      { name:'Regex Validation', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tier:1, tags:['Regex','Form'], repo:'https://alysasalsaa.github.io/regex-validation' },
-      { name:'Key Value Store', icon:ICONS.key, desc:'Browser-based key-value store using localStorage with CRUD operations.', tier:1, tags:['Storage','CRUD'], repo:'https://alysasalsaa.github.io/key-value' },
-      { name:'Lorem Ipsum Generator', icon:ICONS.text, desc:'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.', tier:1, tags:['Generator','Text'], repo:'https://alysasalsaa.github.io/lorem-ipsum-generator' },
-      { name:'Notes App', icon:ICONS.notebook, desc:'Create, edit, and delete notes with localStorage persistence.', tier:1, tags:['CRUD','Storage'], repo:'https://alysasalsaa.github.io/notes-app' },
-      { name:'Pearson Regression', icon:ICONS.trending, desc:'Calculate Pearson correlation coefficient and plot scatter regression charts.', tier:1, tags:['Math','Chart'], repo:'https://alysasalsaa.github.io/pearson-regression' },
-      { name:'Pomodoro Clock', icon:ICONS.clock, desc:'Pomodoro productivity timer with work/break cycles and session tracking.', tier:1, tags:['Timer','Productivity'], repo:'https://alysasalsaa.github.io/pomodoro-clock' },
-      { name:'Product Landing Page', icon:ICONS.shoppingbag, desc:'A responsive product landing page with hero, features, and CTA sections.', tier:1, tags:['UI','Landing'], repo:'https://alysasalsaa.github.io/product-landing-page' },
-      { name:'Quiz App', icon:ICONS.helpcirc, desc:'Multiple choice quiz with score tracking, timer, and result summary.', tier:1, tags:['Quiz','Game'], repo:'https://alysasalsaa.github.io/quiz-app' },
-      { name:'Random Meal Generator', icon:ICONS.utensils, desc:'Generate random meal ideas with ingredients and instructions from MealDB API.', tier:1, tags:['API','Food'], repo:'https://alysasalsaa.github.io/random-meal-generator' },
-      { name:'Random Number Generator', icon:ICONS.dice, desc:'Generate random numbers within a custom range with history tracking.', tier:1, tags:['Math','Random'], repo:'https://alysasalsaa.github.io/random-number-generator' },
-      { name:'Recipe App', icon:ICONS.chef, desc:'Search and browse recipes with ingredients, steps, and serving size adjustment.', tier:1, tags:['API','Food'], repo:'https://alysasalsaa.github.io/recipe-app' },
-      { name:'Roman to Decimal', icon:ICONS.landmark, desc:'Convert Roman numerals to decimal numbers and vice versa.', tier:1, tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/roman-decimal-converter' },
-      { name:'Slider Design', icon:ICONS.slidershz, desc:'Interactive image or content slider with smooth transitions and controls.', tier:1, tags:['UI','Animation'], repo:'https://alysasalsaa.github.io/slider-design' },
-      { name:'Stopwatch', icon:ICONS.stopwatch, desc:'Precision stopwatch with lap tracking, split times, and animated ring display.', tier:1, tags:['Timer','Tool'], repo:'https://alysasalsaa.github.io/stopwatch-app' },
-      { name:'True or False', icon:ICONS.checkcirc, desc:'JavaScript conditional expression evaluator — test truthiness without eval().', tier:1, tags:['JavaScript','Logic'], repo:'https://alysasalsaa.github.io/true-or-false-app' },
-      { name:'Typing Speed Test', icon:ICONS.keyboard, desc:'Measure WPM and accuracy with live error highlighting, difficulty levels, and history.', tier:1, tags:['Game','Tool'], repo:'https://alysasalsaa.github.io/typing-speed-test-app' },
-      { name:'Vigenère Cipher', icon:ICONS.lock, desc:'Classical polyalphabetic encryption and decryption — implemented without eval().', tier:1, tags:['Security','Crypto'], repo:'https://alysasalsaa.github.io/vigenere-cipher-app' },
-      { name:'Weather App', icon:ICONS.cloud, desc:'Real-time weather by city using Open-Meteo — no API key needed.', tier:1, tags:['API','Weather'], repo:'https://alysasalsaa.github.io/weather-app' },
-      { name:'Windchill', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tier:1, tags:['Math','Weather'], repo:'https://alysasalsaa.github.io/windchill-app' },
-      { name:'Word Frequency', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tier:1, tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' },
-      { name:'Bit Masks', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tier:2, tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
-      { name:'Book Finder App', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tier:2, tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
-      { name:'Calculator CLI', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tier:2, tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
-      { name:'Card Memory Game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tier:2, tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
-{ name:'Charity Finder', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tier:2, tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
+      { name:'Bin2Dec', cat:'data', icon:ICONS.hash, desc:'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.', tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/bin2dec-app' },
+      { name:'Border Radius Previewer', cat:'tool', icon:ICONS.square, desc:'Preview and customize CSS border-radius values interactively with live code output.', tags:['CSS','Tool'], repo:'https://alysasalsaa.github.io/border-radius-previewer' },
+      { name:'CSV2JSON', cat:'data', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/csv2json-app' },
+      { name:'Calculator', cat:'tool', icon:ICONS.calculator, desc:'A clean, functional calculator with keyboard support and expression history.', tags:['Math','Tool'], repo:'https://alysasalsaa.github.io/calculator-app' },
+      { name:'Calendar', cat:'tool', icon:ICONS.calendar, desc:'Interactive calendar with month navigation and event marking.', tags:['Date','UI'], repo:'https://alysasalsaa.github.io/calendar-app' },
+      { name:'Cause & Effect', cat:'tool', icon:ICONS.link, desc:'Master-detail UI pattern — click a name to view their full profile.', tags:['UI','Pattern'], repo:'https://alysasalsaa.github.io/cause-effect-app' },
+      { name:'Christmas Lights', cat:'tool', icon:ICONS.sparkles, desc:'Rippling holiday light display with customizable colors, size, brightness, and rows.', tags:['Animation','Fun'], repo:'https://alysasalsaa.github.io/christmas-lights-app' },
+      { name:'Color Cycle', cat:'tool', icon:ICONS.palette, desc:'RGB color cycling display — watch colors shift over time with customizable increments.', tags:['Color','Animation'], repo:'https://alysasalsaa.github.io/colorcycle-app' },
+      { name:'Countdown Timer', cat:'tool', icon:ICONS.timer, desc:'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.', tags:['Timer','Date'], repo:'https://alysasalsaa.github.io/countdown-timer-app' },
+      { name:'Dollars to Rupiah', cat:'api', icon:ICONS.banknote, desc:'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/dollars-to-rupiah-app' },
+      { name:'Dynamic CSS Variables', cat:'tool', icon:ICONS.sliders, desc:'Login form demonstrating real-time CSS variable updates on validation errors.', tags:['CSS','Form'], repo:'https://alysasalsaa.github.io/dynamic-css-variables-app' },
+      { name:'First DB App', cat:'data', icon:ICONS.database, desc:'IndexedDB browser database explorer — load, query, and clear customer data.', tags:['Database','IndexedDB'], repo:'https://alysasalsaa.github.io/first-db-app' },
+      { name:'Flip Image', cat:'tool', icon:ICONS.image, desc:'Flip and mirror images horizontally or vertically with download support.', tags:['Image','Canvas'], repo:'https://alysasalsaa.github.io/flip-image' },
+      { name:'GitHub Status', cat:'api', icon:ICONS.github, desc:'Check GitHub user profiles and repo stats using the GitHub API.', tags:['API','GitHub'], repo:'https://alysasalsaa.github.io/github-status' },
+      { name:'Hello App', cat:'tool', icon:ICONS.hand, desc:'A simple greeting app — the classic first step of every developer.', tags:['Beginner','Simple'], repo:'https://alysasalsaa.github.io/hello-app' },
+      { name:'IoT Mailbox', cat:'tool', icon:ICONS.mailbox, desc:'Simulated IoT mailbox sensor dashboard with notification alerts.', tags:['IoT','Dashboard'], repo:'https://alysasalsaa.github.io/iot-mailbox' },
+      { name:'JSON2CSV', cat:'data', icon:ICONS.barchart, desc:'Convert JSON arrays to downloadable CSV files instantly in the browser.', tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/json2csv-app' },
+      { name:'Regex Validation', cat:'security', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tags:['Regex','Form'], repo:'https://alysasalsaa.github.io/regex-validation' },
+      { name:'Key Value Store', cat:'data', icon:ICONS.key, desc:'Browser-based key-value store using localStorage with CRUD operations.', tags:['Storage','CRUD'], repo:'https://alysasalsaa.github.io/key-value' },
+      { name:'Lorem Ipsum Generator', cat:'tool', icon:ICONS.text, desc:'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.', tags:['Generator','Text'], repo:'https://alysasalsaa.github.io/lorem-ipsum-generator' },
+      { name:'Notes App', cat:'tool', icon:ICONS.notebook, desc:'Create, edit, and delete notes with localStorage persistence.', tags:['CRUD','Storage'], repo:'https://alysasalsaa.github.io/notes-app' },
+      { name:'Pearson Regression', cat:'data', icon:ICONS.trending, desc:'Calculate Pearson correlation coefficient and plot scatter regression charts.', tags:['Math','Chart'], repo:'https://alysasalsaa.github.io/pearson-regression' },
+      { name:'Pomodoro Clock', cat:'tool', icon:ICONS.clock, desc:'Pomodoro productivity timer with work/break cycles and session tracking.', tags:['Timer','Productivity'], repo:'https://alysasalsaa.github.io/pomodoro-clock' },
+      { name:'Product Landing Page', cat:'tool', icon:ICONS.shoppingbag, desc:'A responsive product landing page with hero, features, and CTA sections.', tags:['UI','Landing'], repo:'https://alysasalsaa.github.io/product-landing-page' },
+      { name:'Quiz App', cat:'game', icon:ICONS.helpcirc, desc:'Multiple choice quiz with score tracking, timer, and result summary.', tags:['Quiz','Game'], repo:'https://alysasalsaa.github.io/quiz-app' },
+      { name:'Random Meal Generator', cat:'api', icon:ICONS.utensils, desc:'Generate random meal ideas with ingredients and instructions from MealDB API.', tags:['API','Food'], repo:'https://alysasalsaa.github.io/random-meal-generator' },
+      { name:'Random Number Generator', cat:'tool', icon:ICONS.dice, desc:'Generate random numbers within a custom range with history tracking.', tags:['Math','Random'], repo:'https://alysasalsaa.github.io/random-number-generator' },
+      { name:'Recipe App', cat:'api', icon:ICONS.chef, desc:'Search and browse recipes with ingredients, steps, and serving size adjustment.', tags:['API','Food'], repo:'https://alysasalsaa.github.io/recipe-app' },
+      { name:'Roman to Decimal', cat:'algorithm', icon:ICONS.landmark, desc:'Convert Roman numerals to decimal numbers and vice versa.', tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/roman-decimal-converter' },
+      { name:'Slider Design', cat:'tool', icon:ICONS.slidershz, desc:'Interactive image or content slider with smooth transitions and controls.', tags:['UI','Animation'], repo:'https://alysasalsaa.github.io/slider-design' },
+      { name:'Stopwatch', cat:'tool', icon:ICONS.stopwatch, desc:'Precision stopwatch with lap tracking, split times, and animated ring display.', tags:['Timer','Tool'], repo:'https://alysasalsaa.github.io/stopwatch-app' },
+      { name:'True or False', cat:'tool', icon:ICONS.checkcirc, desc:'JavaScript conditional expression evaluator — test truthiness without eval().', tags:['JavaScript','Logic'], repo:'https://alysasalsaa.github.io/true-or-false-app' },
+      { name:'Typing Speed Test', cat:'game', icon:ICONS.keyboard, desc:'Measure WPM and accuracy with live error highlighting, difficulty levels, and history.', tags:['Game','Tool'], repo:'https://alysasalsaa.github.io/typing-speed-test-app' },
+      { name:'Vigenère Cipher', cat:'security', icon:ICONS.lock, desc:'Classical polyalphabetic encryption and decryption — implemented without eval().', tags:['Security','Crypto'], repo:'https://alysasalsaa.github.io/vigenere-cipher-app' },
+      { name:'Weather App', cat:'api', icon:ICONS.cloud, desc:'Real-time weather by city using Open-Meteo — no API key needed.', tags:['API','Weather'], repo:'https://alysasalsaa.github.io/weather-app' },
+      { name:'Windchill', cat:'tool', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tags:['Math','Weather'], repo:'https://alysasalsaa.github.io/windchill-app' },
+      { name:'Word Frequency', cat:'data', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' },
+      { name:'Bit Masks', cat:'algorithm', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
+      { name:'Book Finder App', cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
+      { name:'Calculator CLI', cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
+      { name:'Card Memory Game', cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
+{ name:'Charity Finder', cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
     ];
 
     let activeFilter = 'all';
@@ -565,8 +569,6 @@
         card.rel = 'noopener noreferrer';
         card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
-        const tierLabel = p.tier === 1 ? 'Beginner' : 'Intermediate';
-
         card.innerHTML = `
           <div class="card-top">
             <div class="card-icon-wrap">${p.icon}</div>
@@ -576,7 +578,6 @@
           <div class="card-desc">${p.desc}</div>
           <div class="card-footer">
             <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-            <span class="card-tier">${tierLabel}</span>
           </div>
         `;
         grid.appendChild(card);
@@ -593,12 +594,12 @@
     function filterCards() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const filtered = PROJECTS.filter(p => {
-        const matchTier   = activeFilter === 'all' || String(p.tier) === activeFilter;
+        const matchCat    = activeFilter === 'all' || p.cat === activeFilter;
         const matchSearch = !q ||
           p.name.toLowerCase().includes(q) ||
           p.desc.toLowerCase().includes(q) ||
           p.tags.some(t => t.toLowerCase().includes(q));
-        return matchTier && matchSearch;
+        return matchCat && matchSearch;
       });
       buildGrid(filtered);
     }
