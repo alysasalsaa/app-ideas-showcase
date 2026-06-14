@@ -22,7 +22,7 @@
       --prompt:    #22d3ee;
     }
 
-    html, body { height: 100%; }
+    html, body { height: 100%; overflow: hidden; }
 
     body {
       background: var(--bg);
@@ -32,16 +32,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 24px 16px;
+      height: 100vh;
+      padding: 16px;
       -webkit-font-smoothing: antialiased;
+      gap: 12px;
     }
 
     /* Header */
     .header {
       width: 100%;
       max-width: 760px;
-      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -116,9 +116,9 @@
     /* Output area */
     .output {
       background: var(--terminal);
-      padding: 20px 20px 8px;
-      min-height: 320px;
-      max-height: 420px;
+      padding: 14px 16px 8px;
+      min-height: 120px;
+      max-height: 28vh;
       overflow-y: auto;
       font-size: 0.82rem;
       line-height: 1.7;
@@ -168,17 +168,16 @@
     .help-grid {
       width: 100%;
       max-width: 760px;
-      margin-top: 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
     }
 
     .cmd-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
+      border-radius: 8px;
+      padding: 8px 12px;
       cursor: pointer;
       transition: background 0.15s, border-color 0.15s;
     }
@@ -189,10 +188,10 @@
     }
 
     .cmd-card .cmd-name {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--cyan);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .cmd-card .cmd-example {
