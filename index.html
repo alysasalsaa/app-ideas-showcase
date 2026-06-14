@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Ideas Showcase — alysasalsaa</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0f1e;
+      --surface:  #1e293b;
+      --border:   #334155;
+      --text:     #f8fafc;
+      --muted:    #64748b;
+      --accent:   #6366f1;
+      --accent2:  #818cf8;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 50%, #0a0f1e 100%);
+      padding: 64px 20px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent2);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span { color: var(--accent2); }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat { text-align: center; }
+
+    .hero-stat .val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent2);
+      font-family: 'Courier New', monospace;
+    }
+
+    .hero-stat .lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding: 0 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .search-wrap:focus-within { border-color: var(--accent); }
+
+    .search-wrap span {
+      padding: 0 12px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .search-wrap input {
+      flex: 1;
+      padding: 11px 12px 11px 0;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .search-wrap input::placeholder { color: #334155; }
+
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent2); }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Count ── */
+    .count-bar {
+      max-width: 1100px;
+      margin: 16px auto 0;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .count-bar strong { color: var(--accent2); }
+
+    /* ── Grid ── */
+    .grid {
+      max-width: 1100px;
+      margin: 16px auto 52px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-color, var(--accent));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-color, var(--accent));
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card-tier {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tier-1 { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+    .tier-2 { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+    .tier-3 { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(99,102,241,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .card-link {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-gh {
+      font-size: 0.72rem;
+      color: #334155;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .card-gh:hover { color: var(--muted); }
+
+    /* ── Empty state ── */
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      color: #334155;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">App Ideas Collection</div>
+    <h1>alysasalsaa's<br><span>Project Showcase</span></h1>
+    <p>A collection of frontend projects built with vanilla HTML, CSS, and JavaScript — one project at a time.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="val" id="totalCount">38</div>
+        <div class="lbl">Projects</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">3</div>
+        <div class="lbl">Tech Used</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">2</div>
+        <div class="lbl">Tiers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search projects…" oninput="filterCards()" />
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+      <button class="filter-btn" onclick="setFilter('1', this)">🟢 Beginner</button>
+      <button class="filter-btn" onclick="setFilter('2', this)">🟡 Intermediate</button>
+    </div>
+  </div>
+
+  <!-- Count -->
+  <div class="count-bar" id="countBar">Showing <strong id="showCount">38</strong> projects</div>
+
+  <!-- Grid -->
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    Built by <a href="https://github.com/alysasalsaa" target="_blank">alysasalsaa</a> ·
+    Based on <a href="https://github.com/florinpop17/app-ideas" target="_blank">App Ideas Collection</a>
+  </footer>
+
+  <script>
+    const PROJECTS = [
+      {
+        name: 'Bin2Dec',
+        icon: '🔢',
+        desc: 'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.',
+        tier: 1,
+        tags: ['Math', 'Converter'],
+        color: '#0ea5e9',
+        repo: 'https://alysasalsaa.github.io/bin2dec-app',
+      },
+      {
+        name: 'Border Radius Previewer',
+        icon: '🟦',
+        desc: 'Preview and customize CSS border-radius values interactively with live code output.',
+        tier: 1,
+        tags: ['CSS', 'Tool'],
+        color: '#8b5cf6',
+        repo: 'https://alysasalsaa.github.io/border-radius-previewer',
+      },
+      {
+        name: 'CSV2JSON',
+        icon: '📄',
+        desc: 'Convert CSV data to formatted JSON output instantly in the browser.',
+        tier: 1,
+        tags: ['Converter', 'Data'],
+        color: '#22c55e',
+        repo: 'https://alysasalsaa.github.io/csv2json-app',
+      },
+      {
+        name: 'Calculator',
+        icon: '🧮',
+        desc: 'A clean, functional calculator with keyboard support and expression history.',
+        tier: 1,
+        tags: ['Math', 'Tool'],
+        color: '#6366f1',
+        repo: 'https://alysasalsaa.github.io/calculator-app',
+      },
+      {
+        name: 'Calendar',
+        icon: '📅',
+        desc: 'Interactive calendar with month navigation and event marking.',
+        tier: 1,
+        tags: ['Date', 'UI'],
+        color: '#f59e0b',
+        repo: 'https://alysasalsaa.github.io/calendar-app',
+      },
+      {
+        name: 'Cause & Effect',
+        icon: '🔗',
+        desc: 'Master-detail UI pattern — click a name to view their full profile.',
+        tier: 1,
+        tags: ['UI', 'Pattern'],
+        color: '#ec4899',
+        repo: 'https://alysasalsaa.github.io/cause-effect-app',
+      },
+      {
+        name: 'Christmas Lights',
+        icon: '🎄',
+        desc: 'Rippling holiday light display with customizable colors, size, brightness, and rows.',
+        tier: 1,
+        tags: ['Animation', 'Fun'],
+        color: '#ef4444',
+        repo: 'https://alysasalsaa.github.io/christmas-lights-app',
+      },
+      {
+        name: 'Color Cycle',
+        icon: '🎨',
+        desc: 'RGB color cycling display — watch colors shift over time with customizable increments.',
+        tier: 1,
+        tags: ['Color', 'Animation'],
+        color: '#a855f7',
+        repo: 'https://alysasalsaa.github.io/colorcycle-app',
+      },
+      {
+        name: 'Countdown Timer',
+        icon: '⏳',
+        desc: 'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.',
+        tier: 1,
+        tags: ['Timer', 'Date'],
+        color: '#0891b2',
+        repo: 'https://alysasalsaa.github.io/countdown-timer-app',
+      },
+      {
+        name: 'Dollars to Rupiah',
+        icon: '💵',
+        desc: 'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.',
+        tier: 1,
+        tags: ['Finance', 'API'],
+        color: '#15803d',
+        repo: 'https://alysasalsaa.github.io/dollars-to-rupiah-app',
+      },
+      {
+        name: 'Dynamic CSS Variables',
+        icon: '🎨',
+        desc: 'Login form demonstrating real-time CSS variable updates on validation errors.',
+        tier: 1,
+        tags: ['CSS', 'Form'],
+        color: '#7c3aed',
+        repo: 'https://alysasalsaa.github.io/dynamic-css-variables-app',
+      },
+      {
+        name: 'First DB App',
+        icon: '🗄',
+        desc: 'IndexedDB browser database explorer — load, query, and clear customer data.',
+        tier: 1,
+        tags: ['Database', 'IndexedDB'],
+        color: '#7c3aed',
+        repo: 'https://alysasalsaa.github.io/first-db-app',
+      },
+      {
+        name: 'Flip Image',
+        icon: '🖼',
+        desc: 'Flip and mirror images horizontally or vertically with download support.',
+        tier: 1,
+        tags: ['Image', 'Canvas'],
+        color: '#0284c7',
+        repo: 'https://alysasalsaa.github.io/flip-image',
+      },
+      {
+        name: 'GitHub Status',
+        icon: '🐙',
+        desc: 'Check GitHub user profiles and repo stats using the GitHub API.',
+        tier: 1,
+        tags: ['API', 'GitHub'],
+        color: '#334155',
+        repo: 'https://alysasalsaa.github.io/github-status',
+      },
+      {
+        name: 'Hello App',
+        icon: '👋',
+        desc: 'A simple greeting app — the classic first step of every developer.',
+        tier: 1,
+        tags: ['Beginner', 'Simple'],
+        color: '#22c55e',
+        repo: 'https://alysasalsaa.github.io/hello-app',
+      },
+      {
+        name: 'IoT Mailbox',
+        icon: '📬',
+        desc: 'Simulated IoT mailbox sensor dashboard with notification alerts.',
+        tier: 1,
+        tags: ['IoT', 'Dashboard'],
+        color: '#f59e0b',
+        repo: 'https://alysasalsaa.github.io/iot-mailbox',
+      },
+      {
+        name: 'JSON2CSV',
+        icon: '📊',
+        desc: 'Convert JSON arrays to downloadable CSV files instantly in the browser.',
+        tier: 1,
+        tags: ['Converter', 'Data'],
+        color: '#16a34a',
+        repo: 'https://alysasalsaa.github.io/json2csv-app',
+      },
+      {
+        name: 'Regex Validation',
+        icon: '🔍',
+        desc: 'JavaScript form validation using regular expressions with real-time feedback.',
+        tier: 1,
+        tags: ['Regex', 'Form'],
+        color: '#dc2626',
+        repo: 'https://alysasalsaa.github.io/regex-validation',
+      },
+      {
+        name: 'Key Value Store',
+        icon: '🔑',
+        desc: 'Browser-based key-value store using localStorage with CRUD operations.',
+        tier: 1,
+        tags: ['Storage', 'CRUD'],
+        color: '#d97706',
+        repo: 'https://alysasalsaa.github.io/key-value',
+      },
+      {
+        name: 'Lorem Ipsum Generator',
+        icon: '📝',
+        desc: 'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.',
+        tier: 1,
+        tags: ['Generator', 'Text'],
+        color: '#6366f1',
+        repo: 'https://alysasalsaa.github.io/lorem-ipsum-generator',
+      },
+      {
+        name: 'Notes App',
+        icon: '🗒',
+        desc: 'Create, edit, and delete notes with localStorage persistence.',
+        tier: 1,
+        tags: ['CRUD', 'Storage'],
+        color: '#f59e0b',
+        repo: 'https://alysasalsaa.github.io/notes-app',
+      },
+      {
+        name: 'Pearson Regression',
+        icon: '📈',
+        desc: 'Calculate Pearson correlation coefficient and plot scatter regression charts.',
+        tier: 1,
+        tags: ['Math', 'Chart'],
+        color: '#0891b2',
+        repo: 'https://alysasalsaa.github.io/pearson-regression',
+      },
+      {
+        name: 'Pomodoro Clock',
+        icon: '🍅',
+        desc: 'Pomodoro productivity timer with work/break cycles and session tracking.',
+        tier: 1,
+        tags: ['Timer', 'Productivity'],
+        color: '#ef4444',
+        repo: 'https://alysasalsaa.github.io/pomodoro-clock',
+      },
+      {
+        name: 'Product Landing Page',
+        icon: '🛍',
+        desc: 'A responsive product landing page with hero, features, and CTA sections.',
+        tier: 1,
+        tags: ['UI', 'Landing'],
+        color: '#8b5cf6',
+        repo: 'https://alysasalsaa.github.io/product-landing-page',
+      },
+      {
+        name: 'Quiz App',
+        icon: '❓',
+        desc: 'Multiple choice quiz with score tracking, timer, and result summary.',
+        tier: 1,
+        tags: ['Quiz', 'Game'],
+        color: '#7c3aed',
+        repo: 'https://alysasalsaa.github.io/quiz-app',
+      },
+      {
+        name: 'Random Meal Generator',
+        icon: '🍽',
+        desc: 'Generate random meal ideas with ingredients and instructions from MealDB API.',
+        tier: 1,
+        tags: ['API', 'Food'],
+        color: '#f97316',
+        repo: 'https://alysasalsaa.github.io/random-meal-generator',
+      },
+      {
+        name: 'Random Number Generator',
+        icon: '🎲',
+        desc: 'Generate random numbers within a custom range with history tracking.',
+        tier: 1,
+        tags: ['Math', 'Random'],
+        color: '#6366f1',
+        repo: 'https://alysasalsaa.github.io/random-number-generator',
+      },
+      {
+        name: 'Recipe App',
+        icon: '👨‍🍳',
+        desc: 'Search and browse recipes with ingredients, steps, and serving size adjustment.',
+        tier: 1,
+        tags: ['API', 'Food'],
+        color: '#ea580c',
+        repo: 'https://alysasalsaa.github.io/recipe-app',
+      },
+      {
+        name: 'Roman to Decimal',
+        icon: '🏛',
+        desc: 'Convert Roman numerals to decimal numbers and vice versa.',
+        tier: 1,
+        tags: ['Math', 'Converter'],
+        color: '#854d0e',
+        repo: 'https://alysasalsaa.github.io/roman-decimal-converter',
+      },
+      {
+        name: 'Slider Design',
+        icon: '🎚',
+        desc: 'Interactive image or content slider with smooth transitions and controls.',
+        tier: 1,
+        tags: ['UI', 'Animation'],
+        color: '#0284c7',
+        repo: 'https://alysasalsaa.github.io/slider-design',
+      },
+      {
+        name: 'Stopwatch',
+        icon: '⏱',
+        desc: 'Precision stopwatch with lap tracking, split times, and animated ring display.',
+        tier: 1,
+        tags: ['Timer', 'Tool'],
+        color: '#6366f1',
+        repo: 'https://alysasalsaa.github.io/stopwatch-app',
+      },
+      {
+        name: 'True or False',
+        icon: '✅',
+        desc: 'JavaScript conditional expression evaluator — test truthiness without eval().',
+        tier: 1,
+        tags: ['JavaScript', 'Logic'],
+        color: '#22c55e',
+        repo: 'https://alysasalsaa.github.io/true-or-false-app',
+      },
+      {
+        name: 'Typing Speed Test',
+        icon: '⌨',
+        desc: 'Measure WPM and accuracy with live error highlighting, difficulty levels, and history.',
+        tier: 1,
+        tags: ['Game', 'Tool'],
+        color: '#6366f1',
+        repo: 'https://alysasalsaa.github.io/typing-speed-test-app',
+      },
+      {
+        name: 'Vigenère Cipher',
+        icon: '🔐',
+        desc: 'Classical polyalphabetic encryption and decryption — implemented without eval().',
+        tier: 1,
+        tags: ['Security', 'Crypto'],
+        color: '#f59e0b',
+        repo: 'https://alysasalsaa.github.io/vigenere-cipher-app',
+      },
+      {
+        name: 'Weather App',
+        icon: '🌤',
+        desc: 'Real-time weather by city using Open-Meteo — no API key needed.',
+        tier: 1,
+        tags: ['API', 'Weather'],
+        color: '#38bdf8',
+        repo: 'https://alysasalsaa.github.io/weather-app',
+      },
+      {
+        name: 'Windchill',
+        icon: '🌬',
+        desc: 'Calculate perceived temperature from actual temp and wind speed, Metric and English units.',
+        tier: 1,
+        tags: ['Math', 'Weather'],
+        color: '#0284c7',
+        repo: 'https://alysasalsaa.github.io/windchill-app',
+      },
+      {
+        name: 'Word Frequency',
+        icon: '📊',
+        desc: 'Analyze word frequency in text — ranked table and bubble chart visualization.',
+        tier: 1,
+        tags: ['Text', 'Chart'],
+        color: '#a78bfa',
+        repo: 'https://alysasalsaa.github.io/word-frequency-app',
+      },
+      {
+        name: 'Bit Masks',
+        icon: '⚙',
+        desc: 'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.',
+        tier: 2,
+        tags: ['Algorithm', 'Bitwise'],
+        color: '#f59e0b',
+        repo: 'https://alysasalsaa.github.io/bit-masks-app',
+      },
+    ];
+
+    /* ── State ── */
+    let activeFilter = 'all';
+
+    /* ── Build grid ── */
+    function buildGrid(list) {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="empty">No projects match your search.</div>';
+        document.getElementById('showCount').textContent = '0';
+        return;
+      }
+
+      document.getElementById('showCount').textContent = list.length;
+
+      list.forEach(p => {
+        const card = document.createElement('a');
+        card.className   = 'card';
+        card.href        = p.repo;
+        card.target      = '_blank';
+        card.rel         = 'noopener noreferrer';
+        card.style.setProperty('--card-color', p.color);
+
+        const tierLabel = p.tier === 1 ? 'Beginner' : p.tier === 2 ? 'Intermediate' : 'Advanced';
+
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="card-icon">${p.icon}</div>
+            <span class="card-tier tier-${p.tier}">${tierLabel}</span>
+          </div>
+          <div class="card-title">${p.name}</div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <div class="card-footer">
+            <span class="card-link">View on GitHub →</span>
+            <span class="card-gh">Open App ↗</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* ── Filter ── */
+    function setFilter(tier, btn) {
+      activeFilter = tier;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterCards();
+    }
+
+    function filterCards() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filtered = PROJECTS.filter(p => {
+        const matchTier   = activeFilter === 'all' || String(p.tier) === activeFilter;
+        const matchSearch = !q ||
+          p.name.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q) ||
+          p.tags.some(t => t.toLowerCase().includes(q));
+        return matchTier && matchSearch;
+      });
+      buildGrid(filtered);
+    }
+
+    /* ── Init ── */
+    document.getElementById('totalCount').textContent = PROJECTS.length;
+    document.getElementById('showCount').textContent  = PROJECTS.length;
+    buildGrid(PROJECTS);
+  </script>
+</body>
+</html>
