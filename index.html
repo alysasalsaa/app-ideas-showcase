@@ -368,6 +368,10 @@
     .tech-tailwind { background: rgba(6,182,212,0.12); color: #06b6d4; border: 1px solid rgba(6,182,212,0.2); }
     .tech-vite  { background: rgba(189,52,254,0.12); color: #bd34fe; border: 1px solid rgba(189,52,254,0.2); }
     .tech-ext   { background: rgba(66,133,244,0.12); color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
+    .tech-axios    { background: rgba(104,186,232,0.12); color: #5a9fd4; border: 1px solid rgba(104,186,232,0.2); }
+    .tech-nodejs   { background: rgba(104,160,99,0.12);  color: #68a063; border: 1px solid rgba(104,160,99,0.2); }
+    .tech-commander{ background: rgba(150,150,150,0.12); color: #aaaaaa; border: 1px solid rgba(150,150,150,0.2); }
+
     /* ── Empty ── */
     .empty {
       grid-column: 1/-1;
@@ -533,10 +537,10 @@
       { name:'Windchill', stack:['html','css','js'], cat:'tool', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tags:['Math','Weather'], repo:'https://alysasalsaa.github.io/windchill-app' },
       { name:'Word Frequency', stack:['html','css','js'], cat:'data', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' },
       { name:'Bit Masks', stack:['html','css','js'], cat:'algorithm', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
-      { name:'Book Finder App', stack:['html','css','js'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
-      { name:'Calculator CLI', stack:['html','css','js'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
+      { name:'Book Finder App', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
+      { name:'Calculator CLI', stack:['nodejs','commander'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
       { name:'Card Memory Game', stack:['react','tailwind','vite'], cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
-{ name:'Charity Finder', stack:['react','tailwind','vite'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
+{ name:'Charity Finder', stack:['react','vite','tailwind','axios'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
     ];
 
     let activeFilter = 'all';
@@ -565,7 +569,7 @@
         card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
         const techBadges = (p.stack || []).map(t => {
-          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension'};
+          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js'};
           return `<span class="tech-badge tech-${t}">${labels[t]||t}</span>`;
         }).join('');
         card.innerHTML = `
