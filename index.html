@@ -370,6 +370,7 @@
     .tech-ext   { background: rgba(66,133,244,0.12); color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
     .tech-axios    { background: rgba(104,186,232,0.12); color: #5a9fd4; border: 1px solid rgba(104,186,232,0.2); }
     .tech-nodejs   { background: rgba(104,160,99,0.12);  color: #68a063; border: 1px solid rgba(104,160,99,0.2); }
+    .tech-fabricjs  { background: rgba(0,163,255,0.12); color: #00a3ff; border: 1px solid rgba(0,163,255,0.2); }
     .tech-commander{ background: rgba(150,150,150,0.12); color: #aaaaaa; border: 1px solid rgba(150,150,150,0.2); }
 
     /* ── Empty ── */
@@ -448,7 +449,7 @@
     </div>
 
     <div class="count-bar">
-      <strong id="showCount">42</strong> projects
+      <strong id="showCount">41</strong> projects
     </div>
 
     <main class="grid" id="grid"></main>
@@ -540,7 +541,7 @@
       { name:'Book Finder App', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
       { name:'Calculator CLI', stack:['nodejs','commander'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
       { name:'Card Memory Game', stack:['react','tailwind','vite'], cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
-{ name:'Currency Converter', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.banknote, desc:'Live currency converter with real-time exchange rates for 160+ currencies and instant swap feature.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/currency-converter' },
+{ name:'Drawing App', stack:['react','vite','tailwind','fabricjs'], cat:'tool', icon:ICONS.palette, desc:'Digital drawing canvas with pen, shapes, eraser, color picker, opacity control, undo, and PNG/JPG export powered by Fabric.js.', tags:['Canvas','Creative'], repo:'https://alysasalsaa.github.io/drawing-app' },
       { name:'Charity Finder', stack:['react','vite','tailwind','axios'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
     ];
 
@@ -570,7 +571,7 @@
         card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
         const techBadges = (p.stack || []).map(t => {
-          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js'};
+          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js',fabricjs:'Fabric.js'};
           return `<span class="tech-badge tech-${t}">${labels[t]||t}</span>`;
         }).join('');
         card.innerHTML = `
