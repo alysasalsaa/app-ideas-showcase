@@ -370,6 +370,7 @@
     .tech-ext   { background: rgba(66,133,244,0.12); color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
     .tech-axios    { background: rgba(104,186,232,0.12); color: #5a9fd4; border: 1px solid rgba(104,186,232,0.2); }
     .tech-nodejs   { background: rgba(104,160,99,0.12);  color: #68a063; border: 1px solid rgba(104,160,99,0.2); }
+    .tech-vue      { background: rgba(65,184,131,0.12); color: #41b883; border: 1px solid rgba(65,184,131,0.2); }
     .tech-fabricjs  { background: rgba(0,163,255,0.12); color: #00a3ff; border: 1px solid rgba(0,163,255,0.2); }
     .tech-commander{ background: rgba(150,150,150,0.12); color: #aaaaaa; border: 1px solid rgba(150,150,150,0.2); }
 
@@ -398,7 +399,7 @@
       .filter-group {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 5px;
       }
       .filter-btn {
@@ -437,15 +438,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" id="searchInput" placeholder="Search projects…" oninput="filterCards()" autocomplete="off" />
       </div>
-      <div class="filter-group">
-        <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
-        <button class="filter-btn" onclick="setFilter('tool', this)">Tool</button>
-        <button class="filter-btn" onclick="setFilter('game', this)">Game</button>
-        <button class="filter-btn" onclick="setFilter('api', this)">API</button>
-        <button class="filter-btn" onclick="setFilter('data', this)">Data</button>
-        <button class="filter-btn" onclick="setFilter('security', this)">Security</button>
-        <button class="filter-btn" onclick="setFilter('algorithm', this)">Algorithm</button>
-      </div>
+      <div class="filter-group" id="filterGroup"></div>
     </div>
 
     <div class="count-bar">
@@ -541,13 +534,64 @@
       { name:'Book Finder App', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
       { name:'Calculator CLI', stack:['nodejs','commander'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
       { name:'Card Memory Game', stack:['react','tailwind','vite'], cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
-{ name:'Drawing App', stack:['react','vite','tailwind','fabricjs'], cat:'tool', icon:ICONS.palette, desc:'Digital drawing canvas with pen, shapes, eraser, color picker, opacity control, undo, and PNG/JPG export powered by Fabric.js.', tags:['Canvas','Creative'], repo:'https://alysasalsaa.github.io/drawing-app' },
+{ name:'Currency Converter', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.banknote, desc:'Live currency converter with real-time exchange rates for 160+ currencies and instant swap feature.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/currency-converter' },
+      { name:'Drawing App', stack:['react','vite','tailwind','fabricjs'], cat:'tool', icon:ICONS.palette, desc:'Digital drawing canvas with pen, shapes, eraser, color picker, opacity control, undo, and PNG/JPG export powered by Fabric.js.', tags:['Canvas','Creative'], repo:'https://alysasalsaa.github.io/drawing-app' },
+      { name:'Emoji Translator', stack:['vue','vite','tailwind'], cat:'tool', icon:ICONS.sparkles, desc:'Translate text to emoji and emoji to text — a fun bidirectional emoji converter built with Vue 3.', tags:['Fun','Tool'], repo:'https://alysasalsaa.github.io/emoji-translator' },
       { name:'Charity Finder', stack:['react','vite','tailwind','axios'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
     ];
 
     let activeFilter = 'all';
 
     function pad(n) { return String(n).padStart(2, '0'); }
+
+    /* ── Build dynamic filter buttons ── */
+    const STACK_LABELS = {
+      html:'HTML/CSS/JS', css:'HTML/CSS/JS', js:'HTML/CSS/JS',
+      react:'React', vue:'Vue', tailwind:'Tailwind', vite:'Vite',
+      axios:'Axios', nodejs:'Node.js', commander:'Commander.js',
+      fabricjs:'Fabric.js', ext:'Extension'
+    };
+
+    /* Groups: some stacks share one filter button */
+    const STACK_GROUP = {
+      html:'html', css:'html', js:'html',
+      react:'react', vue:'vue',
+      tailwind:null, vite:null, axios:null, // hide these — too generic
+      nodejs:'nodejs', commander:'nodejs',
+      fabricjs:'fabricjs', ext:'ext'
+    };
+
+    function buildFilters() {
+      const seen  = new Set()
+      const order = []
+      PROJECTS.forEach(p => (p.stack || []).forEach(s => {
+        const group = STACK_GROUP[s]
+        if (group && !seen.has(group)) { seen.add(group); order.push(group) }
+      }))
+
+      const fg = document.getElementById('filterGroup')
+      fg.innerHTML = ''
+
+      // All button
+      const allBtn = document.createElement('button')
+      allBtn.className = 'filter-btn active'
+      allBtn.textContent = 'All'
+      allBtn.onclick = () => setFilter('all', allBtn)
+      fg.appendChild(allBtn)
+
+      // One button per unique group
+      const groupLabels = {
+        html:'HTML/CSS/JS', react:'React', vue:'Vue',
+        nodejs:'Node.js', fabricjs:'Fabric.js', ext:'Extension'
+      }
+      order.forEach(group => {
+        const btn = document.createElement('button')
+        btn.className = 'filter-btn'
+        btn.textContent = groupLabels[group] || group
+        btn.onclick = () => setFilter(group, btn)
+        fg.appendChild(btn)
+      })
+    }
 
     function buildGrid(list) {
       const grid = document.getElementById('grid');
@@ -571,7 +615,7 @@
         card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
         const techBadges = (p.stack || []).map(t => {
-          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js',fabricjs:'Fabric.js'};
+          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js',fabricjs:'Fabric.js',vue:'Vue'};
           return `<span class="tech-badge tech-${t}">${labels[t]||t}</span>`;
         }).join('');
         card.innerHTML = `
@@ -597,7 +641,10 @@
     function filterCards() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       const filtered = PROJECTS.filter(p => {
-        const matchCat    = activeFilter === 'all' || p.cat === activeFilter;
+        const matchCat = activeFilter === 'all' || (p.stack || []).some(s => {
+          const g = {html:'html',css:'html',js:'html',react:'react',vue:'vue',nodejs:'nodejs',commander:'nodejs',fabricjs:'fabricjs',ext:'ext'}[s]
+          return g === activeFilter
+        });
         const matchSearch = !q ||
           p.name.toLowerCase().includes(q) ||
           p.desc.toLowerCase().includes(q) ||
@@ -607,6 +654,7 @@
       buildGrid(filtered);
     }
 
+    buildFilters();
     document.getElementById('showCount').textContent = PROJECTS.length;
     buildGrid(PROJECTS);
   </script>
