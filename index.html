@@ -372,6 +372,7 @@
     .tech-nodejs   { background: rgba(104,160,99,0.12);  color: #68a063; border: 1px solid rgba(104,160,99,0.2); }
     .tech-vue      { background: rgba(65,184,131,0.12); color: #41b883; border: 1px solid rgba(65,184,131,0.2); }
     .tech-fabricjs  { background: rgba(0,163,255,0.12); color: #00a3ff; border: 1px solid rgba(0,163,255,0.2); }
+    .tech-framer   { background: rgba(0,85,255,0.12); color: #0055ff; border: 1px solid rgba(0,85,255,0.2); }
     .tech-commander{ background: rgba(150,150,150,0.12); color: #aaaaaa; border: 1px solid rgba(150,150,150,0.2); }
 
     /* ── Empty ── */
@@ -494,23 +495,31 @@
 
     const PROJECTS = [
       { name:'Bin2Dec', stack:['html','css','js'], cat:'data', icon:ICONS.hash, desc:'Convert binary numbers up to 8 digits into decimal with real-time visual bit display.', tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/bin2dec-app' },
+      { name:'Bit Masks', stack:['html','css','js'], cat:'algorithm', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
+      { name:'Book Finder App', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
       { name:'Border Radius Previewer', stack:['html','css','js'], cat:'tool', icon:ICONS.square, desc:'Preview and customize CSS border-radius values interactively with live code output.', tags:['CSS','Tool'], repo:'https://alysasalsaa.github.io/border-radius-previewer' },
-      { name:'CSV2JSON', stack:['html','css','js'], cat:'data', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/csv2json-app' },
       { name:'Calculator', stack:['html','css','js'], cat:'tool', icon:ICONS.calculator, desc:'A clean, functional calculator with keyboard support and expression history.', tags:['Math','Tool'], repo:'https://alysasalsaa.github.io/calculator-app' },
+      { name:'Calculator CLI', stack:['nodejs','commander'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
       { name:'Calendar', stack:['html','css','js'], cat:'tool', icon:ICONS.calendar, desc:'Interactive calendar with month navigation and event marking.', tags:['Date','UI'], repo:'https://alysasalsaa.github.io/calendar-app' },
+      { name:'Card Memory Game', stack:['react','tailwind','vite'], cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
       { name:'Cause & Effect', stack:['html','css','js'], cat:'tool', icon:ICONS.link, desc:'Master-detail UI pattern — click a name to view their full profile.', tags:['UI','Pattern'], repo:'https://alysasalsaa.github.io/cause-effect-app' },
+      { name:'Charity Finder', stack:['react','vite','tailwind','axios'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
       { name:'Christmas Lights', stack:['html','css','js'], cat:'tool', icon:ICONS.sparkles, desc:'Rippling holiday light display with customizable colors, size, brightness, and rows.', tags:['Animation','Fun'], repo:'https://alysasalsaa.github.io/christmas-lights-app' },
       { name:'Color Cycle', stack:['html','css','js'], cat:'tool', icon:ICONS.palette, desc:'RGB color cycling display — watch colors shift over time with customizable increments.', tags:['Color','Animation'], repo:'https://alysasalsaa.github.io/colorcycle-app' },
       { name:'Countdown Timer', stack:['html','css','js'], cat:'tool', icon:ICONS.timer, desc:'Multi-event countdown timer with days, hours, minutes, seconds and localStorage persistence.', tags:['Timer','Date'], repo:'https://alysasalsaa.github.io/countdown-timer-app' },
+      { name:'CSV2JSON', stack:['html','css','js'], cat:'data', icon:ICONS.file, desc:'Convert CSV data to formatted JSON output instantly in the browser.', tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/csv2json-app' },
+      { name:'Currency Converter', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.banknote, desc:'Live currency converter with real-time exchange rates for 160+ currencies and instant swap feature.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/currency-converter' },
       { name:'Dollars to Rupiah', stack:['html','css','js'], cat:'api', icon:ICONS.banknote, desc:'Real-time USD to IDR converter with denomination breakdown using fewest notes possible.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/dollars-to-rupiah-app' },
+      { name:'Drawing App', stack:['react','vite','tailwind','fabricjs'], cat:'tool', icon:ICONS.palette, desc:'Digital drawing canvas with pen, shapes, eraser, color picker, opacity control, undo, and PNG/JPG export powered by Fabric.js.', tags:['Canvas','Creative'], repo:'https://alysasalsaa.github.io/drawing-app' },
       { name:'Dynamic CSS Variables', stack:['html','css','js'], cat:'tool', icon:ICONS.sliders, desc:'Login form demonstrating real-time CSS variable updates on validation errors.', tags:['CSS','Form'], repo:'https://alysasalsaa.github.io/dynamic-css-variables-app' },
+      { name:'Emoji Translator', stack:['vue','vite','tailwind'], cat:'tool', icon:ICONS.sparkles, desc:'Translate text to emoji and emoji to text — a fun bidirectional emoji converter built with Vue 3.', tags:['Fun','Tool'], repo:'https://alysasalsaa.github.io/emoji-translator' },
       { name:'First DB App', stack:['html','css','js'], cat:'data', icon:ICONS.database, desc:'IndexedDB browser database explorer — load, query, and clear customer data.', tags:['Database','IndexedDB'], repo:'https://alysasalsaa.github.io/first-db-app' },
+      { name:'FlashCards App', stack:['react','vite','tailwind','framer'], cat:'game', icon:ICONS.helpcirc, desc:'Interactive flashcard quiz with random Q&A cards, multiple choice answers, score tracking, shuffle, and card flip for extra info.', tags:['Quiz','Game'], repo:'https://alysasalsaa.github.io/flashcards-app' },
       { name:'Flip Image', stack:['html','css','js'], cat:'tool', icon:ICONS.image, desc:'Flip and mirror images horizontally or vertically with download support.', tags:['Image','Canvas'], repo:'https://alysasalsaa.github.io/flip-image' },
       { name:'GitHub Status', stack:['html','css','js'], cat:'api', icon:ICONS.github, desc:'Check GitHub user profiles and repo stats using the GitHub API.', tags:['API','GitHub'], repo:'https://alysasalsaa.github.io/github-status' },
       { name:'Hello App', stack:['html','css','js'], cat:'tool', icon:ICONS.hand, desc:'A simple greeting app — the classic first step of every developer.', tags:['Beginner','Simple'], repo:'https://alysasalsaa.github.io/hello-app' },
       { name:'IoT Mailbox', stack:['html','css','js'], cat:'tool', icon:ICONS.mailbox, desc:'Simulated IoT mailbox sensor dashboard with notification alerts.', tags:['IoT','Dashboard'], repo:'https://alysasalsaa.github.io/iot-mailbox' },
       { name:'JSON2CSV', stack:['html','css','js'], cat:'data', icon:ICONS.barchart, desc:'Convert JSON arrays to downloadable CSV files instantly in the browser.', tags:['Converter','Data'], repo:'https://alysasalsaa.github.io/json2csv-app' },
-      { name:'Regex Validation', stack:['html','css','js'], cat:'security', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tags:['Regex','Form'], repo:'https://alysasalsaa.github.io/regex-validation' },
       { name:'Key Value Store', stack:['html','css','js'], cat:'data', icon:ICONS.key, desc:'Browser-based key-value store using localStorage with CRUD operations.', tags:['Storage','CRUD'], repo:'https://alysasalsaa.github.io/key-value' },
       { name:'Lorem Ipsum Generator', stack:['html','css','js'], cat:'tool', icon:ICONS.text, desc:'Generate customizable Lorem Ipsum placeholder text with word/paragraph count.', tags:['Generator','Text'], repo:'https://alysasalsaa.github.io/lorem-ipsum-generator' },
       { name:'Notes App', stack:['html','css','js'], cat:'tool', icon:ICONS.notebook, desc:'Create, edit, and delete notes with localStorage persistence.', tags:['CRUD','Storage'], repo:'https://alysasalsaa.github.io/notes-app' },
@@ -521,6 +530,7 @@
       { name:'Random Meal Generator', stack:['html','css','js'], cat:'api', icon:ICONS.utensils, desc:'Generate random meal ideas with ingredients and instructions from MealDB API.', tags:['API','Food'], repo:'https://alysasalsaa.github.io/random-meal-generator' },
       { name:'Random Number Generator', stack:['html','css','js'], cat:'tool', icon:ICONS.dice, desc:'Generate random numbers within a custom range with history tracking.', tags:['Math','Random'], repo:'https://alysasalsaa.github.io/random-number-generator' },
       { name:'Recipe App', stack:['html','css','js'], cat:'api', icon:ICONS.chef, desc:'Search and browse recipes with ingredients, steps, and serving size adjustment.', tags:['API','Food'], repo:'https://alysasalsaa.github.io/recipe-app' },
+      { name:'Regex Validation', stack:['html','css','js'], cat:'security', icon:ICONS.search, desc:'JavaScript form validation using regular expressions with real-time feedback.', tags:['Regex','Form'], repo:'https://alysasalsaa.github.io/regex-validation' },
       { name:'Roman to Decimal', stack:['html','css','js'], cat:'algorithm', icon:ICONS.landmark, desc:'Convert Roman numerals to decimal numbers and vice versa.', tags:['Math','Converter'], repo:'https://alysasalsaa.github.io/roman-decimal-converter' },
       { name:'Slider Design', stack:['html','css','js'], cat:'tool', icon:ICONS.slidershz, desc:'Interactive image or content slider with smooth transitions and controls.', tags:['UI','Animation'], repo:'https://alysasalsaa.github.io/slider-design' },
       { name:'Stopwatch', stack:['html','css','js'], cat:'tool', icon:ICONS.stopwatch, desc:'Precision stopwatch with lap tracking, split times, and animated ring display.', tags:['Timer','Tool'], repo:'https://alysasalsaa.github.io/stopwatch-app' },
@@ -529,15 +539,7 @@
       { name:'Vigenère Cipher', stack:['html','css','js'], cat:'security', icon:ICONS.lock, desc:'Classical polyalphabetic encryption and decryption — implemented without eval().', tags:['Security','Crypto'], repo:'https://alysasalsaa.github.io/vigenere-cipher-app' },
       { name:'Weather App', stack:['html','css','js'], cat:'api', icon:ICONS.cloud, desc:'Real-time weather by city using Open-Meteo — no API key needed.', tags:['API','Weather'], repo:'https://alysasalsaa.github.io/weather-app' },
       { name:'Windchill', stack:['html','css','js'], cat:'tool', icon:ICONS.wind, desc:'Calculate perceived temperature from actual temp and wind speed, Metric and English units.', tags:['Math','Weather'], repo:'https://alysasalsaa.github.io/windchill-app' },
-      { name:'Word Frequency', stack:['html','css','js'], cat:'data', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' },
-      { name:'Bit Masks', stack:['html','css','js'], cat:'algorithm', icon:ICONS.cpu, desc:'Find cities by GMT offset using bitwise AND operations — no if/else comparisons.', tags:['Algorithm','Bitwise'], repo:'https://alysasalsaa.github.io/bit-masks-app' },
-      { name:'Book Finder App', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.search, desc:'Search and discover books using the Open Library API with cover previews and details.', tags:['API','Search'], repo:'https://alysasalsaa.github.io/book-finder-app' },
-      { name:'Calculator CLI', stack:['nodejs','commander'], cat:'tool', icon:ICONS.terminal, desc:'Command-line calculator with add, subtract, multiply, divide, power, and sqrt — try it live in the browser.', tags:['CLI','Node.js'], repo:'./calculator-cli/calculator-cli.html' },
-      { name:'Card Memory Game', stack:['react','tailwind','vite'], cat:'game', icon:ICONS.sparkles, desc:'Emoji card memory matching game with 3D flip animations, 3 difficulty levels, and win/loss stats.', tags:['React','Game'], repo:'https://alysasalsaa.github.io/card-memory-game' },
-{ name:'Currency Converter', stack:['react','vite','tailwind'], cat:'api', icon:ICONS.banknote, desc:'Live currency converter with real-time exchange rates for 160+ currencies and instant swap feature.', tags:['Finance','API'], repo:'https://alysasalsaa.github.io/currency-converter' },
-      { name:'Drawing App', stack:['react','vite','tailwind','fabricjs'], cat:'tool', icon:ICONS.palette, desc:'Digital drawing canvas with pen, shapes, eraser, color picker, opacity control, undo, and PNG/JPG export powered by Fabric.js.', tags:['Canvas','Creative'], repo:'https://alysasalsaa.github.io/drawing-app' },
-      { name:'Emoji Translator', stack:['vue','vite','tailwind'], cat:'tool', icon:ICONS.sparkles, desc:'Translate text to emoji and emoji to text — a fun bidirectional emoji converter built with Vue 3.', tags:['Fun','Tool'], repo:'https://alysasalsaa.github.io/emoji-translator' },
-      { name:'Charity Finder', stack:['react','vite','tailwind','axios'], cat:'api', icon:ICONS.hand, desc:'Search and discover 24 global nonprofit organizations by name and theme.', tags:['React','Search'], repo:'https://alysasalsaa.github.io/charity-finder' },
+      { name:'Word Frequency', stack:['html','css','js'], cat:'data', icon:ICONS.activity, desc:'Analyze word frequency in text — ranked table and bubble chart visualization.', tags:['Text','Chart'], repo:'https://alysasalsaa.github.io/word-frequency-app' }
     ];
 
     let activeFilter = 'all';
@@ -558,7 +560,7 @@
       react:'react', vue:'vue',
       tailwind:null, vite:null, axios:null, // hide these — too generic
       nodejs:'nodejs', commander:'nodejs',
-      fabricjs:'fabricjs', ext:'ext'
+      fabricjs:'fabricjs', ext:'ext', framer:null
     };
 
     function buildFilters() {
@@ -615,7 +617,7 @@
         card.style.animationDelay = `${Math.min(i * 30, 450)}ms`;
 
         const techBadges = (p.stack || []).map(t => {
-          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js',fabricjs:'Fabric.js',vue:'Vue'};
+          const labels = {html:'HTML',css:'CSS',js:'JS',react:'React',tailwind:'Tailwind',vite:'Vite',ext:'Extension',axios:'Axios',nodejs:'Node.js',commander:'Commander.js',fabricjs:'Fabric.js',vue:'Vue',framer:'Framer Motion'};
           return `<span class="tech-badge tech-${t}">${labels[t]||t}</span>`;
         }).join('');
         card.innerHTML = `
