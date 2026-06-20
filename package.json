@@ -1,0 +1,33 @@
+{
+  "name": "app-ideas-showcase",
+  "version": "1.0.0",
+  "description": "Alysa Salsabila's Project Showcase",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alysasalsaa/app-ideas-showcase.git"
+  },
+  "keywords": [
+    "portfolio",
+    "showcase",
+    "projects"
+  ],
+  "author": "Alysa Salsabila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alysasalsaa/app-ideas-showcase/issues"
+  },
+  "homepage": "https://github.com/alysasalsaa/app-ideas-showcase#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
