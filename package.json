@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/alysasalsaa/app-ideas-showcase#readme",
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0"
   },
   "devDependencies": {
     "vite": "^6.0.0"
